@@ -1,0 +1,436 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8A4BEB4F198ED6C500707046 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A4BEB4E198ED6C500707046 /* Foundation.framework */; };
+		8A4BEB54198ED6C500707046 /* BerTlv.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8A4BEB53198ED6C500707046 /* BerTlv.h */; };
+		8A4BEB56198ED6C500707046 /* BerTlv.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A4BEB55198ED6C500707046 /* BerTlv.m */; };
+		8A4BEB5D198ED6C500707046 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A4BEB5C198ED6C500707046 /* XCTest.framework */; };
+		8A4BEB5E198ED6C500707046 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A4BEB4E198ED6C500707046 /* Foundation.framework */; };
+		8A4BEB60198ED6C500707046 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A4BEB5F198ED6C500707046 /* UIKit.framework */; };
+		8A4BEB63198ED6C500707046 /* libBerTlv.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A4BEB4B198ED6C500707046 /* libBerTlv.a */; };
+		8A4BEB69198ED6C500707046 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8A4BEB67198ED6C500707046 /* InfoPlist.strings */; };
+		8A4BEB6B198ED6C500707046 /* BerTlvTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A4BEB6A198ED6C500707046 /* BerTlvTests.m */; };
+		B2DF65088487594DBEFC7545 /* BerTag.m in Sources */ = {isa = PBXBuildFile; fileRef = B2DF6369EFD6776A1A19AFF0 /* BerTag.m */; };
+		B2DF67B7A348986968C70C79 /* HexUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = B2DF61934AA6EBE642C057E7 /* HexUtil.m */; };
+		B2DF6803205BF73D8A354DD6 /* BerTagTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B2DF6B4302283947CFB9657E /* BerTagTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8A4BEB61198ED6C500707046 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8A4BEB43198ED6C500707046 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8A4BEB4A198ED6C500707046;
+			remoteInfo = BerTlv;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		8A4BEB49198ED6C500707046 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				8A4BEB54198ED6C500707046 /* BerTlv.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		8A4BEB4B198ED6C500707046 /* libBerTlv.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBerTlv.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		8A4BEB4E198ED6C500707046 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		8A4BEB52198ED6C500707046 /* BerTlv-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BerTlv-Prefix.pch"; sourceTree = "<group>"; };
+		8A4BEB53198ED6C500707046 /* BerTlv.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BerTlv.h; sourceTree = "<group>"; };
+		8A4BEB55198ED6C500707046 /* BerTlv.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BerTlv.m; sourceTree = "<group>"; };
+		8A4BEB5B198ED6C500707046 /* BerTlvTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BerTlvTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8A4BEB5C198ED6C500707046 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		8A4BEB5F198ED6C500707046 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		8A4BEB66198ED6C500707046 /* BerTlvTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BerTlvTests-Info.plist"; sourceTree = "<group>"; };
+		8A4BEB68198ED6C500707046 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		8A4BEB6A198ED6C500707046 /* BerTlvTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BerTlvTests.m; sourceTree = "<group>"; };
+		B2DF61934AA6EBE642C057E7 /* HexUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HexUtil.m; sourceTree = "<group>"; };
+		B2DF6369EFD6776A1A19AFF0 /* BerTag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BerTag.m; sourceTree = "<group>"; };
+		B2DF64825EB0782AD3F2A243 /* HexUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HexUtil.h; sourceTree = "<group>"; };
+		B2DF654B440CC8DF0090421E /* BerTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BerTag.h; sourceTree = "<group>"; };
+		B2DF6B4302283947CFB9657E /* BerTagTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BerTagTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8A4BEB48198ED6C500707046 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8A4BEB4F198ED6C500707046 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8A4BEB58198ED6C500707046 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8A4BEB63198ED6C500707046 /* libBerTlv.a in Frameworks */,
+				8A4BEB5D198ED6C500707046 /* XCTest.framework in Frameworks */,
+				8A4BEB60198ED6C500707046 /* UIKit.framework in Frameworks */,
+				8A4BEB5E198ED6C500707046 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8A4BEB42198ED6C500707046 = {
+			isa = PBXGroup;
+			children = (
+				8A4BEB50198ED6C500707046 /* BerTlv */,
+				8A4BEB64198ED6C500707046 /* BerTlvTests */,
+				8A4BEB4D198ED6C500707046 /* Frameworks */,
+				8A4BEB4C198ED6C500707046 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		8A4BEB4C198ED6C500707046 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8A4BEB4B198ED6C500707046 /* libBerTlv.a */,
+				8A4BEB5B198ED6C500707046 /* BerTlvTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8A4BEB4D198ED6C500707046 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8A4BEB4E198ED6C500707046 /* Foundation.framework */,
+				8A4BEB5C198ED6C500707046 /* XCTest.framework */,
+				8A4BEB5F198ED6C500707046 /* UIKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8A4BEB50198ED6C500707046 /* BerTlv */ = {
+			isa = PBXGroup;
+			children = (
+				8A4BEB53198ED6C500707046 /* BerTlv.h */,
+				8A4BEB55198ED6C500707046 /* BerTlv.m */,
+				8A4BEB51198ED6C500707046 /* Supporting Files */,
+				B2DF6369EFD6776A1A19AFF0 /* BerTag.m */,
+				B2DF654B440CC8DF0090421E /* BerTag.h */,
+				B2DF61934AA6EBE642C057E7 /* HexUtil.m */,
+				B2DF64825EB0782AD3F2A243 /* HexUtil.h */,
+			);
+			path = BerTlv;
+			sourceTree = "<group>";
+		};
+		8A4BEB51198ED6C500707046 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				8A4BEB52198ED6C500707046 /* BerTlv-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		8A4BEB64198ED6C500707046 /* BerTlvTests */ = {
+			isa = PBXGroup;
+			children = (
+				8A4BEB6A198ED6C500707046 /* BerTlvTests.m */,
+				8A4BEB65198ED6C500707046 /* Supporting Files */,
+				B2DF6B4302283947CFB9657E /* BerTagTests.m */,
+			);
+			path = BerTlvTests;
+			sourceTree = "<group>";
+		};
+		8A4BEB65198ED6C500707046 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				8A4BEB66198ED6C500707046 /* BerTlvTests-Info.plist */,
+				8A4BEB67198ED6C500707046 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8A4BEB4A198ED6C500707046 /* BerTlv */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8A4BEB6E198ED6C500707046 /* Build configuration list for PBXNativeTarget "BerTlv" */;
+			buildPhases = (
+				8A4BEB47198ED6C500707046 /* Sources */,
+				8A4BEB48198ED6C500707046 /* Frameworks */,
+				8A4BEB49198ED6C500707046 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BerTlv;
+			productName = BerTlv;
+			productReference = 8A4BEB4B198ED6C500707046 /* libBerTlv.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		8A4BEB5A198ED6C500707046 /* BerTlvTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8A4BEB71198ED6C500707046 /* Build configuration list for PBXNativeTarget "BerTlvTests" */;
+			buildPhases = (
+				8A4BEB57198ED6C500707046 /* Sources */,
+				8A4BEB58198ED6C500707046 /* Frameworks */,
+				8A4BEB59198ED6C500707046 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8A4BEB62198ED6C500707046 /* PBXTargetDependency */,
+			);
+			name = BerTlvTests;
+			productName = BerTlvTests;
+			productReference = 8A4BEB5B198ED6C500707046 /* BerTlvTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8A4BEB43198ED6C500707046 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "Evgeniy Sinev";
+			};
+			buildConfigurationList = 8A4BEB46198ED6C500707046 /* Build configuration list for PBXProject "BerTlv" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 8A4BEB42198ED6C500707046;
+			productRefGroup = 8A4BEB4C198ED6C500707046 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8A4BEB4A198ED6C500707046 /* BerTlv */,
+				8A4BEB5A198ED6C500707046 /* BerTlvTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8A4BEB59198ED6C500707046 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8A4BEB69198ED6C500707046 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8A4BEB47198ED6C500707046 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8A4BEB56198ED6C500707046 /* BerTlv.m in Sources */,
+				B2DF65088487594DBEFC7545 /* BerTag.m in Sources */,
+				B2DF67B7A348986968C70C79 /* HexUtil.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8A4BEB57198ED6C500707046 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8A4BEB6B198ED6C500707046 /* BerTlvTests.m in Sources */,
+				B2DF6803205BF73D8A354DD6 /* BerTagTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8A4BEB62198ED6C500707046 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8A4BEB4A198ED6C500707046 /* BerTlv */;
+			targetProxy = 8A4BEB61198ED6C500707046 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		8A4BEB67198ED6C500707046 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8A4BEB68198ED6C500707046 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		8A4BEB6C198ED6C500707046 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		8A4BEB6D198ED6C500707046 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8A4BEB6F198ED6C500707046 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/BerTlv.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "BerTlv/BerTlv-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		8A4BEB70198ED6C500707046 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/BerTlv.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "BerTlv/BerTlv-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		8A4BEB72198ED6C500707046 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "BerTlv/BerTlv-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "BerTlvTests/BerTlvTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		8A4BEB73198ED6C500707046 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "BerTlv/BerTlv-Prefix.pch";
+				INFOPLIST_FILE = "BerTlvTests/BerTlvTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8A4BEB46198ED6C500707046 /* Build configuration list for PBXProject "BerTlv" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8A4BEB6C198ED6C500707046 /* Debug */,
+				8A4BEB6D198ED6C500707046 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8A4BEB6E198ED6C500707046 /* Build configuration list for PBXNativeTarget "BerTlv" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8A4BEB6F198ED6C500707046 /* Debug */,
+				8A4BEB70198ED6C500707046 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		8A4BEB71198ED6C500707046 /* Build configuration list for PBXNativeTarget "BerTlvTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8A4BEB72198ED6C500707046 /* Debug */,
+				8A4BEB73198ED6C500707046 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8A4BEB43198ED6C500707046 /* Project object */;
+}
