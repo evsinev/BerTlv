@@ -52,7 +52,7 @@
 }
 
 - (BOOL)isConstructed {
-    uint8_t *bytes = (uint8_t *)data.bytes;
+    uint8_t *bytes = (uint8_t *) data.bytes;
     // 0x20
     return (bytes[0] & 0b00100000) != 0;
 }

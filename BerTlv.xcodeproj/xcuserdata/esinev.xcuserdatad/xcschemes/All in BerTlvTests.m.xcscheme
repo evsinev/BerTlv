@@ -27,8 +27,6 @@
                BlueprintName = "BerTlvTests"
                ReferencedContainer = "container:BerTlv.xcodeproj">
             </BuildableReference>
-            <SkippedTests>
-            </SkippedTests>
          </TestableReference>
       </Testables>
    </TestAction>

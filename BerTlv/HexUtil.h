@@ -10,4 +10,5 @@
 
 + (NSString *) format:(NSData *)aData;
 
++ (NSData *) parse:(NSString *)aHex;
 @end
