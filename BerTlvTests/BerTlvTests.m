@@ -32,6 +32,14 @@
 - (void)setUp {
     [super setUp];
 
+    // + [E1]
+    //    - [9F1E] 3136303231343337
+    //    + [EF]
+    //        - [DF0D] 4D3030302D4D5049
+    //        - [DF7F] 312D3232
+    //    + [EF]
+    //        - [DF0D] 4D3030302D544553544F53
+    //        - [DF7F] 362D35
     hex =
         /*            0  1  2  3   4  5  6  7     8  9  a  b   c  d  e  f      0123 4567  89ab  cdef */
         /*    0 */ @"e1 35 9f 1e  08 31 36 30    32 31 34 33  37 ef 12 df" // .5.. .160  2143  7...
@@ -82,5 +90,10 @@
 
 - (void)assertString:(NSString *)aExpected actual:(NSString *)aActual {
     XCTAssertTrue([aExpected isEqualToString:aActual], "Expected %@ but actual is %@", aExpected, aActual);
+}
+
+- (void)testDescription {
+
+    NSLog(@"\n%@", [tlv dump:@"  "]);
 }
 @end

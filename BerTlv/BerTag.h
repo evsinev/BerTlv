@@ -22,5 +22,7 @@
 - (NSUInteger)hash;
 - (NSString *)description;
 
+- (NSString *)hex;
+
 + (BerTag *)parse:(NSString *)aHexString;
 @end

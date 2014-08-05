@@ -41,4 +41,13 @@
     return ret;
 }
 
+- (NSString *) dump:(NSString *)aPadding {
+    NSMutableString *sb = [[NSMutableString alloc] init];
+    for (BerTlv *tlv in list) {
+        [sb appendString:[tlv dump:aPadding]];
+    }
+
+    return sb;
+}
+
 @end

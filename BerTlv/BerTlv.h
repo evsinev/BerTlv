@@ -28,5 +28,6 @@
 - (NSString *) textValue;
 - (NSUInteger) intValue;
 
+- (NSString *) dump:(NSString *)aPadding;
 
 @end

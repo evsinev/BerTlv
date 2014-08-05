@@ -18,5 +18,7 @@
 - (BerTlv *)  find   :(BerTag *)aTag;
 - (NSArray *) findAll:(BerTag *)aTag;
 
+- (NSString *) dump:(NSString *)aPadding;
+
 
 @end

@@ -109,5 +109,22 @@
 }
 
 
+- (NSString *)dump:(NSString *)aPadding {
+    NSMutableString *sb = [[NSMutableString alloc] init];
+
+    if(primitive) {
+        [sb appendFormat:@"%@ - [%@] %@\n", aPadding, tag.hex, [self hexValue]];
+    } else {
+        [sb appendFormat:@"%@ + [%@]\n", aPadding, tag.hex];
+        NSMutableString *childPadding = [[NSMutableString alloc] init];
+        [childPadding appendString:aPadding];
+        [childPadding appendString:aPadding];
+        for (BerTlv *tlv in list) {
+            [sb appendString:[tlv dump:childPadding]];
+        }
+    }
+    return sb;
+}
+
 
 @end

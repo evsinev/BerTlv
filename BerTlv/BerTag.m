@@ -101,5 +101,8 @@
     return [[BerTag alloc] init:data offset:0 length:(uint)data.length];
 }
 
+- (NSString *)hex {
+    return [HexUtil format:data];
+}
 
 @end
