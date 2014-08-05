@@ -12,11 +12,21 @@
 
 @interface BerTlv : NSObject
 
-@property(copy, nonatomic, readonly) BerTag * tag;
-@property(copy, nonatomic, readonly) NSData * value;
-@property(copy, nonatomic, readonly) NSArray * list;
+@property(copy, nonatomic, readonly) BerTag  *  tag         ;
+@property(copy, nonatomic, readonly) NSData  *  value       ;
+@property(copy, nonatomic, readonly) NSArray *  list        ;
+@property(nonatomic, readonly)       BOOL       primitive   ;
+@property(nonatomic, readonly)       BOOL       constructed ;
 
 - (id)init:(BerTag *)aTag value:(NSData *)aValue;
 - (id)init:(BerTag *)aTag array:(NSArray *)aArray;
+
+- (BerTlv *)  find:(BerTag *)aTag;
+- (NSArray *) findAll:(BerTag *)aTag;
+
+- (NSString *) hexValue;
+- (NSString *) textValue;
+- (NSUInteger) intValue;
+
 
 @end
