@@ -18,6 +18,8 @@
 		8A4BEB6B198ED6C500707046 /* BerTlvTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A4BEB6A198ED6C500707046 /* BerTlvTests.m */; };
 		B2DF61176FCB84C2ED25ADD5 /* BerTlvParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B2DF6A9F83C1B8506761EA08 /* BerTlvParser.m */; };
 		B2DF65088487594DBEFC7545 /* BerTag.m in Sources */ = {isa = PBXBuildFile; fileRef = B2DF6369EFD6776A1A19AFF0 /* BerTag.m */; };
+		B2DF65529F987575E4CEFAC5 /* BerTlvsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B2DF6D4ED74F7E2C04459B89 /* BerTlvsTests.m */; };
+		B2DF65C52F004A588C3D3492 /* BerTlvs.m in Sources */ = {isa = PBXBuildFile; fileRef = B2DF68E68CD9D09E69ED85E8 /* BerTlvs.m */; };
 		B2DF65E3590F35608BF654D3 /* BerTlvParserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B2DF60961F8D8EF9A49F457B /* BerTlvParserTests.m */; };
 		B2DF67B7A348986968C70C79 /* HexUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = B2DF61934AA6EBE642C057E7 /* HexUtil.m */; };
 		B2DF6803205BF73D8A354DD6 /* BerTagTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B2DF6B4302283947CFB9657E /* BerTagTests.m */; };
@@ -62,12 +64,15 @@
 		B2DF60961F8D8EF9A49F457B /* BerTlvParserTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BerTlvParserTests.m; sourceTree = "<group>"; };
 		B2DF61934AA6EBE642C057E7 /* HexUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HexUtil.m; sourceTree = "<group>"; };
 		B2DF6369EFD6776A1A19AFF0 /* BerTag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BerTag.m; sourceTree = "<group>"; };
+		B2DF63B1FB5A3356C6A8BC63 /* BerTlvs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BerTlvs.h; sourceTree = "<group>"; };
 		B2DF64825EB0782AD3F2A243 /* HexUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HexUtil.h; sourceTree = "<group>"; };
 		B2DF654B440CC8DF0090421E /* BerTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BerTag.h; sourceTree = "<group>"; };
 		B2DF6712285D06D8BEFA7599 /* BerTlvParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BerTlvParser.h; sourceTree = "<group>"; };
+		B2DF68E68CD9D09E69ED85E8 /* BerTlvs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BerTlvs.m; sourceTree = "<group>"; };
 		B2DF6A9F83C1B8506761EA08 /* BerTlvParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BerTlvParser.m; sourceTree = "<group>"; };
 		B2DF6B4302283947CFB9657E /* BerTagTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BerTagTests.m; sourceTree = "<group>"; };
 		B2DF6D0B3FF2D0942CAFCF96 /* HexUtilTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HexUtilTests.m; sourceTree = "<group>"; };
+		B2DF6D4ED74F7E2C04459B89 /* BerTlvsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BerTlvsTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +139,8 @@
 				B2DF64825EB0782AD3F2A243 /* HexUtil.h */,
 				B2DF6A9F83C1B8506761EA08 /* BerTlvParser.m */,
 				B2DF6712285D06D8BEFA7599 /* BerTlvParser.h */,
+				B2DF68E68CD9D09E69ED85E8 /* BerTlvs.m */,
+				B2DF63B1FB5A3356C6A8BC63 /* BerTlvs.h */,
 			);
 			path = BerTlv;
 			sourceTree = "<group>";
@@ -154,6 +161,7 @@
 				B2DF6B4302283947CFB9657E /* BerTagTests.m */,
 				B2DF6D0B3FF2D0942CAFCF96 /* HexUtilTests.m */,
 				B2DF60961F8D8EF9A49F457B /* BerTlvParserTests.m */,
+				B2DF6D4ED74F7E2C04459B89 /* BerTlvsTests.m */,
 			);
 			path = BerTlvTests;
 			sourceTree = "<group>";
@@ -252,6 +260,7 @@
 				B2DF65088487594DBEFC7545 /* BerTag.m in Sources */,
 				B2DF67B7A348986968C70C79 /* HexUtil.m in Sources */,
 				B2DF61176FCB84C2ED25ADD5 /* BerTlvParser.m in Sources */,
+				B2DF65C52F004A588C3D3492 /* BerTlvs.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -263,6 +272,7 @@
 				B2DF6803205BF73D8A354DD6 /* BerTagTests.m in Sources */,
 				B2DF6C7F3CEE5CD4444340EC /* HexUtilTests.m in Sources */,
 				B2DF65E3590F35608BF654D3 /* BerTlvParserTests.m in Sources */,
+				B2DF65529F987575E4CEFAC5 /* BerTlvsTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

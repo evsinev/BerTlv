@@ -11,20 +11,21 @@
 #import "BerTlvParser.h"
 #import "HexUtil.h"
 #import "BerTag.h"
+#import "BerTlvs.h"
 
-@interface BerTlvTests : XCTestCase
+@interface BerTlvsTests : XCTestCase
 
 @end
 
 
-@implementation BerTlvTests {
+@implementation BerTlvsTests {
 
-    BerTlv *tlv;
+    BerTlvs *tlvs;
     NSString *hex;
 
     BerTag *TAG_DF7F;
-    BerTag *TAG_9F1E;
     BerTag *TAG_E1;
+    BerTag *TAG_EF;
     BerTag *TAG_E2;
     BerTag *TAG_DF0D;
 }
@@ -42,45 +43,32 @@
 
     NSData *data = [HexUtil parse:hex];
     BerTlvParser *parser = [[BerTlvParser alloc] init];
-    tlv = [parser parseConstructed:data];
+    BerTlv *tlv = [parser parseConstructed:data];
 
     TAG_DF7F   = [BerTag parse:@"DF 7F"];
-    TAG_9F1E   = [BerTag parse:@"9F 1E"];
     TAG_E1     = [BerTag parse:@"E1"];
     TAG_E2     = [BerTag parse:@"E2"];
+    TAG_EF     = [BerTag parse:@"EF"];
     TAG_DF0D   = [BerTag parse:@"DF0D"];
+
+    NSArray *list = [tlv findAll:TAG_EF];
+    tlvs = [[BerTlvs alloc] init:list];
 }
 
 - (void)testFind {
-    XCTAssertNotNil([tlv find:TAG_E1]);
-    XCTAssertNotNil([tlv find:TAG_9F1E]);
-    XCTAssertNotNil([tlv find:TAG_DF7F]);
-    XCTAssertNil   ([tlv find:TAG_E2]  );
+    XCTAssertNotNil([tlvs find:TAG_EF]);
+    XCTAssertNotNil([tlvs find:TAG_DF0D]);
+    XCTAssertNotNil([tlvs find:TAG_DF7F]);
+    XCTAssertNil   ([tlvs find:TAG_E2]  );
 }
 
 - (void)testFindAll {
-    XCTAssertEqual(1, [tlv findAll:TAG_E1].count);
-    XCTAssertEqual(1, [tlv findAll:TAG_9F1E].count);
-    XCTAssertEqual(2, [tlv findAll:TAG_DF7F].count);
-    XCTAssertEqual(0, [tlv findAll:TAG_E2].count);
+    XCTAssertEqual(0, [tlvs findAll:TAG_E1].count);
+    XCTAssertEqual(0, [tlvs findAll:TAG_E2].count);
+
+    XCTAssertEqual(2, [tlvs findAll:TAG_EF].count);
+    XCTAssertEqual(2, [tlvs findAll:TAG_DF0D].count);
+    XCTAssertEqual(2, [tlvs findAll:TAG_DF7F].count);
 }
 
-- (void)testTextValue {
-    [self assertString:@"16021437" actual:[tlv find:TAG_9F1E].textValue];
-    [self assertString:@"1-22"     actual:[tlv find:TAG_DF7F].textValue];
-    [self assertString:@"M000-MPI" actual:[tlv find:TAG_DF0D].textValue];
-}
-
-- (void)testHexValue {
-    [self assertString:@"4D3030302D4D5049" actual:[tlv find:TAG_DF0D].hexValue];
-}
-
-- (void)testIntValue {
-    XCTAssertEqual(5561998523279167561, [tlv find:TAG_DF0D].intValue);
-}
-
-
-- (void)assertString:(NSString *)aExpected actual:(NSString *)aActual {
-    XCTAssertTrue([aExpected isEqualToString:aActual], "Expected %@ but actual is %@", aExpected, aActual);
-}
 @end
