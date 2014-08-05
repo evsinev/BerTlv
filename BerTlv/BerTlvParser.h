@@ -5,6 +5,12 @@
 
 #import <Foundation/Foundation.h>
 
+@class BerTlv;
+
 
 @interface BerTlvParser : NSObject
+
+- (BerTlv *)parseConstructed:(NSData *)aData;
+
+
 @end

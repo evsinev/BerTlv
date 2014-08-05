@@ -27,13 +27,7 @@ static uint8_t HEX_BYTE_SKIP = 99;
 }
 
 + (NSString *)format:(NSData *)aData {
-    NSMutableString *sb = [[NSMutableString alloc] initWithCapacity:aData.length*2];
-    uint8_t const *bytes = aData.bytes;
-    for(uint8_t i=0; i<aData.length; i++) {
-        uint8_t b = bytes[i];
-        [sb appendFormat:@"%02X", b];
-    }
-    return sb;
+    return [HexUtil format:aData offset:0 len:aData.length];
 }
 
 + (NSData *)parse:(NSString *)aHex {
@@ -79,4 +73,14 @@ static uint8_t HEX_BYTE_SKIP = 99;
 }
 
 
++ (NSString *)format:(NSData *)aData offset:(uint)aOffset len:(uint)aLen {
+    NSMutableString *sb = [[NSMutableString alloc] initWithCapacity:aData.length*2];
+    uint8_t const *bytes = aData.bytes;
+    uint max = aOffset+aLen;
+    for(uint i=aOffset; i < max; i++) {
+        uint8_t b = bytes[i];
+        [sb appendFormat:@"%02X", b];
+    }
+    return sb;
+}
 @end
