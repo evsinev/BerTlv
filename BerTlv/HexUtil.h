@@ -12,5 +12,5 @@
 
 + (NSData *) parse:(NSString *)aHex;
 
-+ (NSString *)format:(NSData *)data offset:(uint)offset len:(uint)len;
++ (NSString *)format:(NSData *)data offset:(uint)offset len:(NSUInteger)len;
 @end

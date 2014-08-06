@@ -60,8 +60,8 @@
 }
 
 - (void)addBcd:(NSUInteger )aValue tag:(BerTag *)aTag length:(NSUInteger )aLength {
-    NSMutableString *hex = [NSMutableString stringWithFormat:@"%ul", aValue];
-    for(int i=0; hex.length <= aLength*2 && i<100; i++) {
+    NSMutableString *hex = [NSMutableString stringWithFormat:@"%@", @(aValue)];
+    for(int i=0; hex.length < aLength*2 && i<100; i++) {
         [hex insertString:@"0" atIndex:0];
     }
     [self addHex:hex tag:aTag];
@@ -115,8 +115,8 @@
     }
 
     // calculates bytes count for TYPE and LENGTH
-    uint typeBytesCount   = templateTag.data.length;
-    uint lengthBytesCount = [self calcBytesCountForLength:data.length];
+    NSUInteger typeBytesCount   = templateTag.data.length;
+    NSUInteger lengthBytesCount = [self calcBytesCountForLength:data.length];
 
     NSMutableData *ret = [[NSMutableData alloc] initWithCapacity:
                      + typeBytesCount
@@ -167,7 +167,7 @@
 
     } else {
         @throw([NSException exceptionWithName:@"LengthOutOfRangeException"
-                                       reason:[NSString stringWithFormat:@"Length [%d] is out of range ( > 0x1000000)", aLength]
+                                       reason:[NSString stringWithFormat:@"Length [%lu] is out of range ( > 0x1000000)", (unsigned long) aLength]
                                      userInfo:nil]);
     }
 
@@ -183,8 +183,8 @@
     return [parser parseTlvs:[self buildData]];
 }
 
-- (uint) calcBytesCountForLength:(uint)aLength {
-    uint ret;
+- (NSUInteger) calcBytesCountForLength:(NSUInteger)aLength {
+    NSUInteger ret;
     if(aLength < 0x80) {
         ret = 1;
     } else if (aLength <0x100) {
@@ -195,7 +195,7 @@
         ret = 4;
     } else {
         @throw([NSException exceptionWithName:@"LengthOutOfRangeException"
-                                       reason:[NSString stringWithFormat:@"Length [%d] is out of range ( > 0x1000000)", aLength]
+                                       reason:[NSString stringWithFormat:@"Length [%lu] is out of range ( > 0x1000000)", (unsigned long) aLength]
                                      userInfo:nil]);
     }
     return ret;

@@ -53,8 +53,8 @@ static int IS_DEBUG_ENABLED = 0;
 {
     if(aOffset+aLen > aBuf.length) {
         @throw([NSException exceptionWithName:@"OutOfRangeException"
-                                       reason:[NSString stringWithFormat:@"Length is out of the range [offset=%d,  len=%d, array.length=%d, level=%d]"
-                                               , aOffset, aLen, aBuf.length, aLevel]
+                                       reason:[NSString stringWithFormat:@"Length is out of the range [offset=%d,  len=%d, array.length=%lu, level=%d]"
+                                               , aOffset, aLen, (unsigned long) aBuf.length, aLevel]
                                      userInfo:nil]);
     }
 

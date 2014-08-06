@@ -80,18 +80,6 @@
     return [[NSString alloc] initWithData:self.value encoding:NSASCIIStringEncoding];
 }
 
-- (NSUInteger)intValue {
-    NSUInteger i=0;
-    NSUInteger j=0;
-    NSUInteger number = 0;
-
-    for (i = 0; i < value.length; i++) {
-        j= ((uint8_t *)value.bytes)[i];
-        number = number * 256 + ( j<0 ? j+=256 : j);
-    }
-    return number;
-}
-
 - (void)checkPrimitive {
     if(constructed) {
         @throw([NSException exceptionWithName:@"NotPrimitiveTagException"

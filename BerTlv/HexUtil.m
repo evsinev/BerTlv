@@ -68,16 +68,22 @@ static uint8_t HEX_BYTE_SKIP = 99;
         }
     }
 
+    if(highPassed) {
+        @throw([NSException exceptionWithName:@"EvenException"
+                                       reason:[NSString stringWithFormat:@"Even count of HEX chars. Hex string is %@"
+                                               , aHex]
+                                     userInfo:nil]);
+    }
     // returns immutable
     return [NSData dataWithData:data];
 }
 
 
-+ (NSString *)format:(NSData *)aData offset:(uint)aOffset len:(uint)aLen {
++ (NSString *)format:(NSData *)aData offset:(uint)aOffset len:(NSUInteger)aLen {
     NSMutableString *sb = [[NSMutableString alloc] initWithCapacity:aData.length*2];
     uint8_t const *bytes = aData.bytes;
-    uint max = aOffset+aLen;
-    for(uint i=aOffset; i < max; i++) {
+    NSUInteger max = aOffset+aLen;
+    for(NSUInteger i=aOffset; i < max; i++) {
         uint8_t b = bytes[i];
         [sb appendFormat:@"%02X", b];
     }
