@@ -1,6 +1,8 @@
 # BER-TLV parser and builder
 
 
+[![Build Status](https://travis-ci.org/evsinev/BerTlv.svg?branch=master)](https://travis-ci.org/evsinev/BerTlv)
+
 ## Parsing
 
     NSString * hex =
