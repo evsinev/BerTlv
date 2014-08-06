@@ -6,11 +6,13 @@
 #import <Foundation/Foundation.h>
 
 @class BerTlv;
+@class BerTlvs;
 
 
 @interface BerTlvParser : NSObject
 
 - (BerTlv *)parseConstructed:(NSData *)aData;
+- (BerTlvs *)parseTlvs:(NSData *)aData;
 
 
 @end

@@ -92,14 +92,6 @@
     return number;
 }
 
-- (void)checkConstructed {
-    if(primitive) {
-        @throw([NSException exceptionWithName:@"NotConstructedTagException"
-                                       reason:[NSString stringWithFormat:@"Tag %@ is primitive", tag]
-                                     userInfo:nil]);
-    }
-}
-
 - (void)checkPrimitive {
     if(constructed) {
         @throw([NSException exceptionWithName:@"NotPrimitiveTagException"

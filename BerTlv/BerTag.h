@@ -7,6 +7,8 @@
 
 @interface BerTag : NSObject
 
+@property(nonatomic, copy) NSData *data;;
+
 - (id) init:(NSData *)aData
      offset:(uint)aOffset
      length:(uint)aLength;

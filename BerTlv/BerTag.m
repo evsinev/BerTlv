@@ -8,8 +8,9 @@
 
 
 @implementation BerTag {
-    NSData *data;
 }
+
+@synthesize data;
 
 - (id)init:(NSData *)aData offset:(uint)aOffset length:(uint)aLength {
     self = [super init];

@@ -7,6 +7,7 @@
 #import "BerTlv.h"
 #import "HexUtil.h"
 #import "BerTag.h"
+#import "BerTlvs.h"
 
 
 static int IS_DEBUG_ENABLED = 0;
@@ -20,6 +21,28 @@ static int IS_DEBUG_ENABLED = 0;
     uint result=0;
     BerTlv * ret = [self parseWithResult:&result data:aData offset:0 len:(uint)aData.length level:0];
     return ret;
+}
+
+- (BerTlvs *)parseTlvs:(NSData *)aData {
+    if(aData.length==0) {
+        return [[BerTlvs alloc] init:[[NSArray alloc] init]];
+    }
+
+    NSMutableArray *list = [[NSMutableArray alloc] init];
+    int offset = 0;
+    for(uint i=0; i<100; i++) {
+        uint result=0;
+        BerTlv * ret = [self parseWithResult:&result data:aData offset:offset len:(uint)aData.length-offset level:0];
+        [list addObject:ret];
+
+        if (result >= aData.length) {
+            break;
+        }
+
+        offset = result;
+    }
+
+    return [[BerTlvs alloc] init:list];
 }
 
 - (BerTlv *)parseWithResult:(uint*)aOutResult
