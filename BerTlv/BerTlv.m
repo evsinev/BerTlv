@@ -36,6 +36,10 @@
     return self;
 }
 
+- (BOOL)hasTag:(BerTag *)aTag {
+    return [self find:aTag] != nil;
+}
+
 - (BerTlv *)find:(BerTag *)aTag {
     if([aTag isEqualToTag:tag]) {
         return self;

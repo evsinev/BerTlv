@@ -9,6 +9,7 @@
 @interface HexUtil : NSObject
 
 + (NSString *) format:(NSData *)aData;
++ (NSString *) prettyFormat:(NSData *)aData;
 
 + (NSData *) parse:(NSString *)aHex;
 

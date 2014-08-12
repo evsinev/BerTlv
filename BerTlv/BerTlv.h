@@ -21,6 +21,7 @@
 - (id)init:(BerTag *)aTag value:(NSData *)aValue;
 - (id)init:(BerTag *)aTag array:(NSArray *)aArray;
 
+- (BOOL)      hasTag:(BerTag *)aTag;
 - (BerTlv *)  find:(BerTag *)aTag;
 - (NSArray *) findAll:(BerTag *)aTag;
 

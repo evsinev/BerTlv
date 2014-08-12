@@ -26,6 +26,17 @@ static uint8_t HEX_BYTE_SKIP = 99;
 
 }
 
++ (NSString *)prettyFormat:(NSData *)aData {
+    NSMutableString *sb = [[NSMutableString alloc] initWithCapacity:aData.length*2];
+    uint8_t const *bytes = aData.bytes;
+    [sb appendFormat:@"[%@]", @(aData.length)];
+    for(NSUInteger i=0; i < aData.length; i++) {
+        uint8_t b = bytes[i];
+        [sb appendFormat:@" %02X", b];
+    }
+    return sb;
+}
+
 + (NSString *)format:(NSData *)aData {
     return [HexUtil format:aData offset:0 len:aData.length];
 }

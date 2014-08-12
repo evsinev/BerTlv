@@ -31,6 +31,11 @@
     [self expected:@"F1F2F3F4F5F6F7F8F9FAFBFCFDFEFDFF" hex:@"f1f2f3f4f5f6f7f8f9fafbfcfdfefdff"];
 }
 
+- (void)testPrettyFormat {
+    [self prettyExpected:@"[6] 01 02 03 0A 0B 0C" hex:@"01 02 03 0a 0b 0c"];
+}
+
+
 - (void)expected:(NSString *)aHex {
     NSData *data = [HexUtil parse:aHex];
     NSString *was = [HexUtil format:data];
@@ -43,6 +48,13 @@
     NSData *data = [HexUtil parse:aHex];
     NSString *actual = [HexUtil format:data];
     // NSLog(@"%@ -> %@", aHex, actual);
+
+    XCTAssertTrue([aExpected isEqualToString:actual], @"Expected %@ but actual %@", aExpected, actual);
+}
+
+- (void)prettyExpected:(NSString *)aExpected hex:(NSString *)aHex {
+    NSData *data = [HexUtil parse:aHex];
+    NSString *actual = [HexUtil prettyFormat:data];
 
     XCTAssertTrue([aExpected isEqualToString:actual], @"Expected %@ but actual %@", aExpected, actual);
 }
