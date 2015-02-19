@@ -126,6 +126,13 @@
     [self assertHex:@"8606000000123456" actual:builder.buildData];
 }
 
+- (void)testAddAmount270 {
+    BerTlvBuilder *builder = [[BerTlvBuilder alloc] init];
+    NSDecimalNumber * amount = [NSDecimalNumber decimalNumberWithString:@"000270.00001"];
+    [builder addAmount:amount tag:[BerTag parse:@"9f 02"]];
+    [self assertHex:@"9f0206000000027000" actual:builder.buildData];
+}
+
 - (void)testAddDate {
     BerTlvBuilder *builder = [[BerTlvBuilder alloc] init];
 
