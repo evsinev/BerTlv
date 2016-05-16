@@ -1,5 +1,5 @@
 framework module BerTlv {
-  umbrella header "BerTlv.h"
+  umbrella header "BerTlvUmbrella.h"
 
   export *
   module * { export * }
