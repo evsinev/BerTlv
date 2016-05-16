@@ -30,6 +30,7 @@
 		8A858F5A1CE6159100A3779C /* BerTlvBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = B2DF6CCDBA6480154AAA66AF /* BerTlvBuilder.m */; };
 		8ADE44A41CE9F0F2006BEC34 /* BerTlv.h in Headers */ = {isa = PBXBuildFile; fileRef = 8A4BEB53198ED6C500707046 /* BerTlv.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8ADE44A81CE9F322006BEC34 /* BerTlvUmbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8ADE44A71CE9F322006BEC34 /* BerTlvUmbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8ADE44A91CE9F3E3006BEC34 /* HexUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = B2DF64825EB0782AD3F2A243 /* HexUtil.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B2DF61176FCB84C2ED25ADD5 /* BerTlvParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B2DF6A9F83C1B8506761EA08 /* BerTlvParser.m */; };
 		B2DF6396CCD74FFB97269FE7 /* BerTlvBuilderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B2DF6DFB3D566DBD8B474A49 /* BerTlvBuilderTests.m */; };
 		B2DF65088487594DBEFC7545 /* BerTag.m in Sources */ = {isa = PBXBuildFile; fileRef = B2DF6369EFD6776A1A19AFF0 /* BerTag.m */; };
@@ -259,6 +260,7 @@
 				8A858F531CE6156E00A3779C /* BerTlvs.h in Headers */,
 				8ADE44A41CE9F0F2006BEC34 /* BerTlv.h in Headers */,
 				8ADE44A81CE9F322006BEC34 /* BerTlvUmbrella.h in Headers */,
+				8ADE44A91CE9F3E3006BEC34 /* HexUtil.h in Headers */,
 				8A858F541CE6156E00A3779C /* BerTlvBuilder.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
