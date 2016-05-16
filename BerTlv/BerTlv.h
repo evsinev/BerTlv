@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+FOUNDATION_EXPORT double OMGHTTPURLRQVersionNumber;
+FOUNDATION_EXPORT const unsigned char OMGHTTPURLRQVersionString[];
+
 @class BerTag;
 
 @interface BerTlv : NSObject
