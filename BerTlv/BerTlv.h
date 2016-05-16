@@ -8,8 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-FOUNDATION_EXPORT double OMGHTTPURLRQVersionNumber;
-FOUNDATION_EXPORT const unsigned char OMGHTTPURLRQVersionString[];
+FOUNDATION_EXPORT double BerTlvVersionNumber;
+FOUNDATION_EXPORT const unsigned char BerTlvVersionString[];
 
 @class BerTag;
 
