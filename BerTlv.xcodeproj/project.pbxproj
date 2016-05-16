@@ -13,11 +13,11 @@
 		8A4BEB5D198ED6C500707046 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A4BEB5C198ED6C500707046 /* XCTest.framework */; };
 		8A4BEB5E198ED6C500707046 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A4BEB4E198ED6C500707046 /* Foundation.framework */; };
 		8A4BEB60198ED6C500707046 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A4BEB5F198ED6C500707046 /* UIKit.framework */; };
-		8A4BEB63198ED6C500707046 /* libBerTlv.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A4BEB4B198ED6C500707046 /* libBerTlv.a */; };
+		8A4BEB63198ED6C500707046 /* libBerTlvStatic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A4BEB4B198ED6C500707046 /* libBerTlvStatic.a */; };
 		8A4BEB69198ED6C500707046 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8A4BEB67198ED6C500707046 /* InfoPlist.strings */; };
 		8A4BEB6B198ED6C500707046 /* BerTlvTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A4BEB6A198ED6C500707046 /* BerTlvTests.m */; };
 		8A858F3C1CE6154600A3779C /* BerTlvFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = 8A858F3B1CE6154600A3779C /* BerTlvFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		8A858F431CE6154600A3779C /* BerTlvFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A858F391CE6154600A3779C /* BerTlvFramework.framework */; };
+		8A858F431CE6154600A3779C /* BerTlv.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A858F391CE6154600A3779C /* BerTlv.framework */; };
 		8A858F481CE6154600A3779C /* BerTlvFrameworkTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A858F471CE6154600A3779C /* BerTlvFrameworkTests.m */; };
 		8A858F501CE6156E00A3779C /* BerTag.h in Headers */ = {isa = PBXBuildFile; fileRef = B2DF654B440CC8DF0090421E /* BerTag.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8A858F511CE6156E00A3779C /* HexUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = B2DF64825EB0782AD3F2A243 /* HexUtil.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -73,7 +73,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		8A4BEB4B198ED6C500707046 /* libBerTlv.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBerTlv.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		8A4BEB4B198ED6C500707046 /* libBerTlvStatic.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBerTlvStatic.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A4BEB4E198ED6C500707046 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8A4BEB52198ED6C500707046 /* BerTlv-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BerTlv-Prefix.pch"; sourceTree = "<group>"; };
 		8A4BEB53198ED6C500707046 /* BerTlv.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BerTlv.h; sourceTree = "<group>"; };
@@ -84,7 +84,7 @@
 		8A4BEB66198ED6C500707046 /* BerTlvTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BerTlvTests-Info.plist"; sourceTree = "<group>"; };
 		8A4BEB68198ED6C500707046 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8A4BEB6A198ED6C500707046 /* BerTlvTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BerTlvTests.m; sourceTree = "<group>"; };
-		8A858F391CE6154600A3779C /* BerTlvFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BerTlvFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8A858F391CE6154600A3779C /* BerTlv.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BerTlv.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A858F3B1CE6154600A3779C /* BerTlvFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BerTlvFramework.h; sourceTree = "<group>"; };
 		8A858F3D1CE6154600A3779C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8A858F421CE6154600A3779C /* BerTlvFrameworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BerTlvFrameworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -120,7 +120,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8A4BEB63198ED6C500707046 /* libBerTlv.a in Frameworks */,
+				8A4BEB63198ED6C500707046 /* libBerTlvStatic.a in Frameworks */,
 				8A4BEB5D198ED6C500707046 /* XCTest.framework in Frameworks */,
 				8A4BEB60198ED6C500707046 /* UIKit.framework in Frameworks */,
 				8A4BEB5E198ED6C500707046 /* Foundation.framework in Frameworks */,
@@ -138,7 +138,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8A858F431CE6154600A3779C /* BerTlvFramework.framework in Frameworks */,
+				8A858F431CE6154600A3779C /* BerTlv.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -160,9 +160,9 @@
 		8A4BEB4C198ED6C500707046 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8A4BEB4B198ED6C500707046 /* libBerTlv.a */,
+				8A4BEB4B198ED6C500707046 /* libBerTlvStatic.a */,
 				8A4BEB5B198ED6C500707046 /* BerTlvTests.xctest */,
-				8A858F391CE6154600A3779C /* BerTlvFramework.framework */,
+				8A858F391CE6154600A3779C /* BerTlv.framework */,
 				8A858F421CE6154600A3779C /* BerTlvFrameworkTests.xctest */,
 			);
 			name = Products;
@@ -266,9 +266,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		8A4BEB4A198ED6C500707046 /* BerTlv */ = {
+		8A4BEB4A198ED6C500707046 /* BerTlvStatic */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8A4BEB6E198ED6C500707046 /* Build configuration list for PBXNativeTarget "BerTlv" */;
+			buildConfigurationList = 8A4BEB6E198ED6C500707046 /* Build configuration list for PBXNativeTarget "BerTlvStatic" */;
 			buildPhases = (
 				8A4BEB47198ED6C500707046 /* Sources */,
 				8A4BEB48198ED6C500707046 /* Frameworks */,
@@ -278,9 +278,9 @@
 			);
 			dependencies = (
 			);
-			name = BerTlv;
+			name = BerTlvStatic;
 			productName = BerTlv;
-			productReference = 8A4BEB4B198ED6C500707046 /* libBerTlv.a */;
+			productReference = 8A4BEB4B198ED6C500707046 /* libBerTlvStatic.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		8A4BEB5A198ED6C500707046 /* BerTlvTests */ = {
@@ -301,9 +301,9 @@
 			productReference = 8A4BEB5B198ED6C500707046 /* BerTlvTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		8A858F381CE6154600A3779C /* BerTlvFramework */ = {
+		8A858F381CE6154600A3779C /* BerTlv */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8A858F4E1CE6154600A3779C /* Build configuration list for PBXNativeTarget "BerTlvFramework" */;
+			buildConfigurationList = 8A858F4E1CE6154600A3779C /* Build configuration list for PBXNativeTarget "BerTlv" */;
 			buildPhases = (
 				8A858F341CE6154600A3779C /* Sources */,
 				8A858F351CE6154600A3779C /* Frameworks */,
@@ -314,9 +314,9 @@
 			);
 			dependencies = (
 			);
-			name = BerTlvFramework;
+			name = BerTlv;
 			productName = BerTlvFramework;
-			productReference = 8A858F391CE6154600A3779C /* BerTlvFramework.framework */;
+			productReference = 8A858F391CE6154600A3779C /* BerTlv.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		8A858F411CE6154600A3779C /* BerTlvFrameworkTests */ = {
@@ -368,9 +368,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8A4BEB4A198ED6C500707046 /* BerTlv */,
+				8A858F381CE6154600A3779C /* BerTlv */,
+				8A4BEB4A198ED6C500707046 /* BerTlvStatic */,
 				8A4BEB5A198ED6C500707046 /* BerTlvTests */,
-				8A858F381CE6154600A3779C /* BerTlvFramework */,
 				8A858F411CE6154600A3779C /* BerTlvFrameworkTests */,
 			);
 		};
@@ -454,12 +454,12 @@
 /* Begin PBXTargetDependency section */
 		8A4BEB62198ED6C500707046 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 8A4BEB4A198ED6C500707046 /* BerTlv */;
+			target = 8A4BEB4A198ED6C500707046 /* BerTlvStatic */;
 			targetProxy = 8A4BEB61198ED6C500707046 /* PBXContainerItemProxy */;
 		};
 		8A858F451CE6154600A3779C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 8A858F381CE6154600A3779C /* BerTlvFramework */;
+			target = 8A858F381CE6154600A3779C /* BerTlv */;
 			targetProxy = 8A858F441CE6154600A3779C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -712,7 +712,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8A4BEB6E198ED6C500707046 /* Build configuration list for PBXNativeTarget "BerTlv" */ = {
+		8A4BEB6E198ED6C500707046 /* Build configuration list for PBXNativeTarget "BerTlvStatic" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8A4BEB6F198ED6C500707046 /* Debug */,
@@ -730,13 +730,14 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8A858F4E1CE6154600A3779C /* Build configuration list for PBXNativeTarget "BerTlvFramework" */ = {
+		8A858F4E1CE6154600A3779C /* Build configuration list for PBXNativeTarget "BerTlv" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8A858F4A1CE6154600A3779C /* Debug */,
 				8A858F4B1CE6154600A3779C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8A858F4F1CE6154600A3779C /* Build configuration list for PBXNativeTarget "BerTlvFrameworkTests" */ = {
 			isa = XCConfigurationList;
@@ -745,6 +746,7 @@
 				8A858F4D1CE6154600A3779C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
