@@ -9,9 +9,9 @@ before_install:
   - gem install xcpretty
 
 script:
-  - set -o pipefail && xcodebuild -project BerTlv.xcodeproj    \
-    -scheme BerTlv                                             \
-    -sdk iphonesimulator                                       \
-    -configuration Debug                                       \
-    -destination "platform=iOS Simulator,OS=9.3,name=iPhone 5" \
+  - set -o pipefail && xcodebuild -project BerTlv.xcodeproj
+    -scheme BerTlv
+    -sdk iphonesimulator
+    -configuration Debug
+    -destination "platform=iOS Simulator,OS=9.3,name=iPhone 5"
     clean build test | xcpretty -c
