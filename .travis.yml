@@ -1,5 +1,4 @@
-# reference: http://www.objc.io/issue-6/travis-ci.html
-
 language: objective-c
-script:
-- xctool test -project BerTlv.xcodeproj -scheme BerTlv -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
+xcode_project: BerTlv.xcodeproj
+xcode_scheme: BerTlv
+

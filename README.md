@@ -1,9 +1,32 @@
 # BER-TLV parser and builder
 
-
 [![Build Status](https://travis-ci.org/evsinev/BerTlv.svg?branch=master)](https://travis-ci.org/evsinev/BerTlv)
 
-## Parsing
+BerTlv is an Objective-C framework for parsing and building BER TLV encoded data.
+
+## Features
+
+* immutable
+* production ready (uses in several projects published at appstore)
+* lightweight (no external dependencies)
+
+## Setup with dependency managers
+
+### Cocoapods
+
+    pod 'BerTlv', '0.1.0'
+
+or
+
+    pod "BerTlv", :git => 'git@github.com:evsinev/BerTlv.git', :tag => '0.1.3'
+
+### Carthage
+
+    github "evsinev/BerTlv"  "0.1.3"
+
+## Examples
+
+### Parsing
 
     NSString * hex =
         /*            0  1  2  3   4  5  6  7     8  9  a  b   c  d  e  f      0123 4567  89ab  cdef */
@@ -31,7 +54,7 @@ The output is:
            - [DF7F] 362D35
 
 
-## Building
+### Building
 
      BerTlvBuilder *builder = [[BerTlvBuilder alloc] initWithTemplate:TAG_E0];
      for(int i=0; i<5; i++) {
@@ -52,3 +75,6 @@ The output is:
          - [86] F9128478E28F860D8424000008514C8F
 
 
+## License
+
+The BerTlv framework is licensed under the Apache License 2.0
