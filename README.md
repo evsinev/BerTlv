@@ -6,7 +6,8 @@ BerTlv is an Objective-C framework for parsing and building BER TLV encoded data
 
 ## Features
 
-* immutable
+* supported types: amount, date, time, text, BCD, bytes
+* thread safe (provides immutable container BerTlv)
 * production ready (uses in several projects published at appstore)
 * lightweight (no external dependencies)
 
