@@ -5,6 +5,16 @@ xcode_scheme: BerTlv
 
 osx_image: xcode7.3.1
 
-script:
-- xcodebuild -project BerTlv.xcodeproj -scheme BerTlv -sdk iphonesimulator -configuration Debug build test
+before_install:
+  - gem install xcpretty
 
+script:
+  - set -o pipefail && xcodebuild -project BerTlv.xcodeproj
+    -scheme BerTlv
+    -sdk iphonesimulator
+    -configuration Debug
+    -arch i386
+    VALID_ARCHS="armv6 armv7 i386"
+    ONLY_ACTIVE_ARCH=NO
+    TARGETED_DEVICE_FAMILY="1"
+    build test
