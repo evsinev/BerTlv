@@ -18,3 +18,4 @@ target
 *xcuserdata/
 *.xccheckout
 automation_results
+/build
