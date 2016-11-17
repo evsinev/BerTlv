@@ -13,6 +13,5 @@
 
 - (BerTlv *)parseConstructed:(NSData *)aData;
 - (BerTlvs *)parseTlvs:(NSData *)aData;
-
-
+- (BerTlvs *)parseTlvs:(NSData *)aData numberOfTags:(NSUInteger)numberOfTags;
 @end
