@@ -24,13 +24,17 @@ static int IS_DEBUG_ENABLED = 0;
 }
 
 - (BerTlvs *)parseTlvs:(NSData *)aData {
+    return [self parseTlvs:aData numberOfTags:100];
+}
+
+- (BerTlvs *)parseTlvs:(NSData *)aData numberOfTags:(NSUInteger) numberOfTags {
     if(aData.length==0) {
         return [[BerTlvs alloc] init:[[NSArray alloc] init]];
     }
 
     NSMutableArray *list = [[NSMutableArray alloc] init];
     int offset = 0;
-    for(uint i=0; i<100; i++) {
+    for(uint i=0; i<numberOfTags; i++) {
         uint result=0;
         BerTlv * ret = [self parseWithResult:&result data:aData offset:offset len:(uint)aData.length-offset level:0];
         [list addObject:ret];
@@ -126,7 +130,7 @@ static int IS_DEBUG_ENABLED = 0;
         return 1;
     }
 
-    
+
 }
 
 - (BerTag *) createTag:(NSData *)aBuf offset:(uint)aOffset len:(uint)aLen pad:(NSString *)aLevelPadding {
@@ -177,7 +181,7 @@ static int IS_DEBUG_ENABLED = 0;
     return length;
 }
 
-- (void) addChildren:(NSData *)aBuf 
+- (void) addChildren:(NSData *)aBuf
               offset:(uint)aOffset
                level:(uint)aLevel
         levelPadding:(NSString *)aLevelPadding
@@ -204,7 +208,7 @@ static int IS_DEBUG_ENABLED = 0;
             );
         }
     }
-    
+
 }
 
 @end
