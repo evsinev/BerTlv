@@ -74,6 +74,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4B9E63381E82B31E0051EA01 /* BerTlv.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = BerTlv.modulemap; sourceTree = "<group>"; };
 		8A4BEB4B198ED6C500707046 /* libBerTlvStatic.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBerTlvStatic.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A4BEB4E198ED6C500707046 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8A4BEB52198ED6C500707046 /* BerTlv-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BerTlv-Prefix.pch"; sourceTree = "<group>"; };
@@ -203,6 +204,7 @@
 		8A4BEB51198ED6C500707046 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4B9E63381E82B31E0051EA01 /* BerTlv.modulemap */,
 				8A4BEB52198ED6C500707046 /* BerTlv-Prefix.pch */,
 			);
 			name = "Supporting Files";
@@ -625,7 +627,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = BerTlv/module.modulemap;
+				MODULEMAP_FILE = BerTlv/BerTlv.modulemap;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.payneteasy.BerTlvFramework;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -655,7 +657,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = BerTlv/module.modulemap;
+				MODULEMAP_FILE = BerTlv/BerTlv.modulemap;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.payneteasy.BerTlvFramework;
 				PRODUCT_NAME = "$(TARGET_NAME)";
