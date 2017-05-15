@@ -1,0 +1,38 @@
+---
+resources:
+
+- name: source-code
+  type: git
+  source:
+    uri: https://github.com/evsinev/BerTlv.git
+
+jobs:
+
+- name: job-build
+
+  plan:
+
+  - get: source-code
+    trigger: true
+
+  - task: test
+    config:
+      platform: darwin
+
+      inputs:
+      - name: source-code
+
+      run:
+        path: "xcodebuild"
+        args:
+        - -project
+        - source-code/BerTlv.xcodeproj
+        - -scheme
+        - BerTlv
+        - -destination
+        - 'platform=iOS Simulator,name=iPhone 7,OS=10.3'
+        - ONLY_ACTIVE_ARCH=NO
+        - CODE_SIGNING_REQUIRED=NO
+        - clean
+        - build
+        - test
