@@ -352,7 +352,7 @@
 				TargetAttributes = {
 					8A858F381CE6154600A3779C = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = QE2M7G5E22;
+						ProvisioningStyle = Manual;
 					};
 					8A858F411CE6154600A3779C = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -617,6 +617,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -648,6 +649,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
