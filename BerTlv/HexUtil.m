@@ -4,6 +4,7 @@
 //
 
 #import "HexUtil.h"
+#import "BerTlvErrors.h"
 
 static uint8_t HEX_BYTES[] = {
        // 0   1   2   3   4   5   6   7   8   9   A   B   C   D   E   F
@@ -21,8 +22,7 @@ static uint8_t HEX_BYTES_LEN = 128;
 static uint8_t HEX_BYTE_SKIP = 99;
 
 
-@implementation HexUtil {
-}
+@implementation HexUtil
 
 + (NSString *)prettyFormat:(NSData *)aData {
     NSMutableString *sb = [[NSMutableString alloc] initWithCapacity:aData.length*2];
@@ -83,14 +83,14 @@ static uint8_t HEX_BYTE_SKIP = 99;
 
     if(highPassed) {
         if (error) {
-            *error = [self invalidStringError];
+            *error = [BerTlvErrors invalidHexString];
         }
         return nil;
     }
     
     if ([data length] == 0) {
         if (error) {
-            *error = [self invalidStringError];
+            *error = [BerTlvErrors invalidHexString];
         }
         return nil;
     } else {
@@ -111,7 +111,4 @@ static uint8_t HEX_BYTE_SKIP = 99;
     return [sb copy];
 }
 
-+ (NSError *)invalidStringError {
-    return [[NSError alloc] initWithDomain:@"com.payneteasy.BerTlvFramework" code:2 userInfo: @{NSLocalizedDescriptionKey : NSLocalizedString(@"Invalid Hex string", "Invalid hex string")}];
-}
 @end
