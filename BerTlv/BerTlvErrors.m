@@ -19,7 +19,11 @@
 
 
 + (NSError *)badLengthAtOffset:(uint)aOffset numberOfBytes:(NSUInteger)numberOfBytes {
-    return [[NSError alloc] initWithDomain:kBerTlvErrorDomain code:1 userInfo: @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"At position %d the len is more then 3 [%d]", "Length is out of the range"), aOffset, numberOfBytes]}];
+    return [[NSError alloc] initWithDomain:kBerTlvErrorDomain code:2 userInfo: @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"At position %d the len is more then 3 [%d]", "Length is out of the range"), aOffset, numberOfBytes]}];
+}
+
++ (NSError *)tagNotPrimative:(BerTag *)aTag {
+        return [[NSError alloc] initWithDomain:kBerTlvErrorDomain code:3 userInfo: @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Tag %@ is constructed", "Is not primative tag"), aTag]}];
 }
 
 @end

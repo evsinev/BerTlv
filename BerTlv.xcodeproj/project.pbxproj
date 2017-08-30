@@ -10,6 +10,7 @@
 		4BE6176E1F56BE9700F9CBD4 /* BerTlvErrors.h in Headers */ = {isa = PBXBuildFile; fileRef = 4BE6176C1F56BE9700F9CBD4 /* BerTlvErrors.h */; };
 		4BE6176F1F56BE9700F9CBD4 /* BerTlvErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE6176D1F56BE9700F9CBD4 /* BerTlvErrors.m */; };
 		4BE617701F56BF1D00F9CBD4 /* BerTlvErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE6176D1F56BE9700F9CBD4 /* BerTlvErrors.m */; };
+		4BE617751F56F00000F9CBD4 /* BerTlvGarbageDataTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE617741F56F00000F9CBD4 /* BerTlvGarbageDataTests.m */; };
 		8A4BEB4F198ED6C500707046 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A4BEB4E198ED6C500707046 /* Foundation.framework */; };
 		8A4BEB54198ED6C500707046 /* BerTlv.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8A4BEB53198ED6C500707046 /* BerTlv.h */; };
 		8A4BEB56198ED6C500707046 /* BerTlv.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A4BEB55198ED6C500707046 /* BerTlv.m */; };
@@ -80,6 +81,7 @@
 		4B9E63381E82B31E0051EA01 /* BerTlv.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = BerTlv.modulemap; sourceTree = "<group>"; };
 		4BE6176C1F56BE9700F9CBD4 /* BerTlvErrors.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BerTlvErrors.h; sourceTree = "<group>"; };
 		4BE6176D1F56BE9700F9CBD4 /* BerTlvErrors.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BerTlvErrors.m; sourceTree = "<group>"; };
+		4BE617741F56F00000F9CBD4 /* BerTlvGarbageDataTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BerTlvGarbageDataTests.m; sourceTree = "<group>"; };
 		8A4BEB4B198ED6C500707046 /* libBerTlvStatic.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBerTlvStatic.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A4BEB4E198ED6C500707046 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8A4BEB52198ED6C500707046 /* BerTlv-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BerTlv-Prefix.pch"; sourceTree = "<group>"; };
@@ -227,6 +229,7 @@
 				B2DF60961F8D8EF9A49F457B /* BerTlvParserTests.m */,
 				B2DF6D4ED74F7E2C04459B89 /* BerTlvsTests.m */,
 				B2DF6DFB3D566DBD8B474A49 /* BerTlvBuilderTests.m */,
+				4BE617741F56F00000F9CBD4 /* BerTlvGarbageDataTests.m */,
 			);
 			path = BerTlvTests;
 			sourceTree = "<group>";
@@ -438,6 +441,7 @@
 				B2DF65E3590F35608BF654D3 /* BerTlvParserTests.m in Sources */,
 				B2DF65529F987575E4CEFAC5 /* BerTlvsTests.m in Sources */,
 				B2DF6396CCD74FFB97269FE7 /* BerTlvBuilderTests.m in Sources */,
+				4BE617751F56F00000F9CBD4 /* BerTlvGarbageDataTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -29,13 +29,16 @@ static int IS_DEBUG_ENABLED = 0;
     if(aData.length==0) {
         return [[BerTlvs alloc] init:[[NSArray alloc] init]];
     }
-
+    
     NSMutableArray *list = [[NSMutableArray alloc] init];
     int offset = 0;
     for(uint i=0; i<numberOfTags; i++) {
         uint result=0;
         BerTlv * ret = [self parseWithResult:&result data:aData offset:offset len:(uint)aData.length-offset level:0 error:error];
-        [list addObject:ret];
+        
+        if (ret != nil) {
+            [list addObject:ret];
+        }
 
         if (result >= aData.length) {
             break;
@@ -70,7 +73,7 @@ static int IS_DEBUG_ENABLED = 0;
     // TAG
     uint tagBytesCount = [self calcTagBytesCount:aBuf offset:aOffset];
     BerTag *tag = [self createTag:aBuf offset:aOffset len:tagBytesCount pad:levelPadding];
-
+    
     // LENGTH
     uint lengthBytesCount = [self calcLengthBytesCount:aBuf offset:aOffset + tagBytesCount];
     NSError *lengthErr;
@@ -105,19 +108,27 @@ static int IS_DEBUG_ENABLED = 0;
 
     } else {
         NSRange range = {aOffset+tagBytesCount+lengthBytesCount, valueLength};
-        NSData *value = [aBuf subdataWithRange:range];
         uint resultOffset = aOffset + tagBytesCount + lengthBytesCount + valueLength;
-
+        *aOutResult = resultOffset;
+        
+        if (range.location + range.length > aBuf.length) {
+            return nil;
+        }
+        NSData *value = [aBuf subdataWithRange:range];;
+        
         if(IS_DEBUG_ENABLED) {
             NSLog(@"%@Primitive value = %@", levelPadding, [HexUtil format:value]);
             NSLog(@"%@Returning primitive offset = %d", levelPadding, resultOffset );
         }
-        *aOutResult = resultOffset;
         return [[BerTlv alloc] init:tag value:value];
     }
 }
 
 - (uint)calcTagBytesCount:(NSData *)aBuf offset:(uint)aOffset {
+    if (aOffset > aBuf.length) {
+        return 1;
+    }
+    
     uint8_t const *bytes = aBuf.bytes;
     if((bytes[aOffset] & 0x1F) == 0x1F) { // see subsequent bytes
         uint len = 2;
@@ -150,6 +161,10 @@ static int IS_DEBUG_ENABLED = 0;
 }
 
 - (uint) calcLengthBytesCount:(NSData *)aBuf offset:(uint)aOffset {
+    if (aOffset > aBuf.length) {
+        return 1;
+    }
+    
     uint8_t const *bytes = aBuf.bytes;
     uint len = (uint) bytes[aOffset];
     if( (len & 0x80) == 0x80) {
@@ -160,6 +175,10 @@ static int IS_DEBUG_ENABLED = 0;
 }
 
 -(uint) calcDataLength:(NSData *)aBuf offset:(uint) aOffset error:(NSError **)error {
+    if (aOffset > aBuf.length) {
+        return 1;
+    }
+    
     uint8_t const *bytes = aBuf.bytes;
     uint length = bytes[aOffset];
 
@@ -196,8 +215,10 @@ static int IS_DEBUG_ENABLED = 0;
     while (startPosition < aOffset + aValueLength) {
         uint result = 0;
         BerTlv *tlv = [self parseWithResult:&result data:aBuf offset:startPosition len:len level:aLevel+1 error:nil];
-        [aList addObject:tlv];
-
+        if (tlv != nil) {
+            [aList addObject:tlv];
+        }
+        
         startPosition = result;
         len           = aValueLength - startPosition;
 

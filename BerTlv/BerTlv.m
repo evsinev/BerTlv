@@ -9,6 +9,7 @@
 #import "BerTlv.h"
 #import "BerTag.h"
 #import "HexUtil.h"
+#import "BerTlvErrors.h"
 
 @implementation BerTlv
 
@@ -49,7 +50,7 @@
         return nil;
     }
     
-    for( BerTlv * tlv in list) {
+    for(BerTlv *tlv in list) {
         BerTlv *found = [tlv find:aTag];
         if(found!=nil) {
             return found;
@@ -75,29 +76,26 @@
     return array;
 }
 
-- (NSString *)hexValue {
-    [self checkPrimitive];
-    return [HexUtil format:value];
+- (NSString *)hexValueWithError:(NSError **)error {
+    if (constructed) {
+        if (error) {
+            *error = [BerTlvErrors tagNotPrimative:tag];
+        }
+        return nil;
+    } else {
+        return [HexUtil format:value];
+    }
 }
 
 - (NSString *)textValue {
     return [[NSString alloc] initWithData:self.value encoding:NSASCIIStringEncoding];
 }
 
-- (void)checkPrimitive {
-    if(constructed) {
-        @throw([NSException exceptionWithName:@"NotPrimitiveTagException"
-                                       reason:[NSString stringWithFormat:@"Tag %@ is constructed", tag]
-                                     userInfo:nil]);
-    }
-}
-
-
 - (NSString *)dump:(NSString *)aPadding {
     NSMutableString *sb = [[NSMutableString alloc] init];
 
     if(primitive) {
-        [sb appendFormat:@"%@ - [%@] %@\n", aPadding, tag.hex, [self hexValue]];
+        [sb appendFormat:@"%@ - [%@] %@\n", aPadding, tag.hex, [self hexValueWithError:nil]];
     } else {
         [sb appendFormat:@"%@ + [%@]\n", aPadding, tag.hex];
         NSMutableString *childPadding = [[NSMutableString alloc] init];
@@ -107,7 +105,7 @@
             [sb appendString:[tlv dump:childPadding]];
         }
     }
-    return sb;
+    return [sb copy];
 }
 
 

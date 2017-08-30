@@ -15,8 +15,12 @@
 - (id)init:(NSData *)aData offset:(uint)aOffset length:(uint)aLength {
     self = [super init];
     if(self) {
-        NSRange range = {aOffset, aLength};
-        data = [aData subdataWithRange:range];
+        if (aOffset + aLength <= aData.length) {
+            NSRange range = {aOffset, aLength};
+            data = [aData subdataWithRange:range];
+        } else {
+            return nil;
+        }
     }
     return self;
 }
@@ -53,6 +57,7 @@
 }
 
 - (BOOL)isConstructed {
+    if (!data) return true;
     uint8_t *bytes = (uint8_t *) data.bytes;
     // 0x20
     return (bytes[0] & 0b00100000) != 0;
