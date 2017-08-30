@@ -22,8 +22,6 @@ static uint8_t HEX_BYTE_SKIP = 99;
 
 
 @implementation HexUtil {
-
-
 }
 
 + (NSString *)prettyFormat:(NSData *)aData {
@@ -34,7 +32,7 @@ static uint8_t HEX_BYTE_SKIP = 99;
         uint8_t b = bytes[i];
         [sb appendFormat:@" %02X", b];
     }
-    return sb;
+    return [sb copy];
 }
 
 + (NSString *)format:(NSData *)aData {
@@ -42,6 +40,10 @@ static uint8_t HEX_BYTE_SKIP = 99;
 }
 
 + (NSData *)parse:(NSString *)aHex {
+    return [self parse:aHex error:nil];
+}
+
++ (NSData *) parse:(NSString *)aHex error:(NSError **)error {
     char const *text = [aHex cStringUsingEncoding:NSASCIIStringEncoding];
     size_t len = strnlen(text, aHex.length);
 
@@ -80,13 +82,21 @@ static uint8_t HEX_BYTE_SKIP = 99;
     }
 
     if(highPassed) {
-        @throw([NSException exceptionWithName:@"EvenException"
-                                       reason:[NSString stringWithFormat:@"Even count of HEX chars. Hex string is %@"
-                                               , aHex]
-                                     userInfo:nil]);
+        if (error) {
+            *error = [self invalidStringError];
+        }
+        return nil;
     }
-    // returns immutable
-    return [NSData dataWithData:data];
+    
+    if ([data length] == 0) {
+        if (error) {
+            *error = [self invalidStringError];
+        }
+        return nil;
+    } else {
+        // returns immutable
+        return [data copy];
+    }
 }
 
 
@@ -98,6 +108,10 @@ static uint8_t HEX_BYTE_SKIP = 99;
         uint8_t b = bytes[i];
         [sb appendFormat:@"%02X", b];
     }
-    return sb;
+    return [sb copy];
+}
+
++ (NSError *)invalidStringError {
+    return [[NSError alloc] initWithDomain:@"com.payneteasy.BerTlvFramework" code:2 userInfo: @{NSLocalizedDescriptionKey : NSLocalizedString(@"Invalid Hex string", "Invalid hex string")}];
 }
 @end
