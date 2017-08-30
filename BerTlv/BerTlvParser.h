@@ -8,10 +8,11 @@
 @class BerTlv;
 @class BerTlvs;
 
-
+NS_ASSUME_NONNULL_BEGIN
 @interface BerTlvParser : NSObject
 
-- (BerTlv *)parseConstructed:(NSData *)aData;
-- (BerTlvs *)parseTlvs:(NSData *)aData;
-- (BerTlvs *)parseTlvs:(NSData *)aData numberOfTags:(NSUInteger)numberOfTags;
+- (BerTlv * _Nullable)parseConstructed:(NSData *)aData error:(NSError **)error;
+- (BerTlvs * _Nullable)parseTlvs:(NSData *)aData error:(NSError **)error;
+- (BerTlvs * _Nullable)parseTlvs:(NSData *)aData numberOfTags:(NSUInteger)numberOfTags error:(NSError **)error;
 @end
+NS_ASSUME_NONNULL_END

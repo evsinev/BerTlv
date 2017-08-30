@@ -93,7 +93,7 @@ NSString *hexPrimitive =
 
     NSData *data = [HexUtil parse:hex];
     BerTlvParser *parser = [[BerTlvParser alloc] init];
-    BerTlv *tlv = [parser parseConstructed:data];
+    BerTlv *tlv = [parser parseConstructed:data error:nil];
     [self assertTag:[BerTag parse:@"e1"] actual:tlv.tag];
     XCTAssertTrue(3 == tlv.list.count, @"");
 
@@ -117,7 +117,7 @@ NSString *hexPrimitive =
 - (void) testParseTlvs {
     NSData *data = [HexUtil parse:hexPrimitive];
     BerTlvParser *parser = [[BerTlvParser alloc] init];
-    BerTlvs *tlvs = [parser parseTlvs:data];
+    BerTlvs *tlvs = [parser parseTlvs:data error:nil];
 
     XCTAssertEqual(31, tlvs.list.count, @"Count must be 13");
     NSLog(@"tlvs = \n%@", [tlvs dump:@"  "]);
@@ -128,7 +128,7 @@ NSString *hexPrimitive =
     NSData *data = [HexUtil parse:hexPrimitive];
     BerTlvParser *parser = [[BerTlvParser alloc] init];
 
-    BerTlvs *tlvs = [parser parseTlvs:data numberOfTags: 2];
+    BerTlvs *tlvs = [parser parseTlvs:data numberOfTags: 2 error:nil];
 
     XCTAssertEqual(2, tlvs.list.count, @"Count must be 2");
     NSLog(@"tlvs = \n%@", [tlvs dump:@"  "]);

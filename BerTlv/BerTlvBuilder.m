@@ -175,12 +175,12 @@
 
 - (BerTlv *)buildTlv {
     BerTlvParser * parser = [[BerTlvParser alloc] init];
-    return [parser parseConstructed:[self buildData]];
+    return [parser parseConstructed:[self buildData] error:nil];
 }
 
 - (BerTlvs *)buildTlvs {
     BerTlvParser * parser = [[BerTlvParser alloc] init];
-    return [parser parseTlvs:[self buildData]];
+    return [parser parseTlvs:[self buildData] error:nil];
 }
 
 - (NSUInteger) calcBytesCountForLength:(NSUInteger)aLength {
