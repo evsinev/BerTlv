@@ -31,7 +31,7 @@ static int IS_DEBUG_ENABLED = 0;
     }
     
     NSMutableArray *list = [[NSMutableArray alloc] init];
-    int offset = 0;
+    uint offset = 0;
     for(uint i=0; i<numberOfTags; i++) {
         uint result=0;
         BerTlv * ret = [self parseWithResult:&result data:aData offset:offset len:(uint)aData.length-offset level:0 error:error];
@@ -45,6 +45,10 @@ static int IS_DEBUG_ENABLED = 0;
         }
 
         offset = result;
+        
+//        if (error) {
+//            break;
+//        }
     }
 
     return [[BerTlvs alloc] init:list];
@@ -57,12 +61,6 @@ static int IS_DEBUG_ENABLED = 0;
                       level:(uint)aLevel
                       error:(NSError **)error
 {
-    if(aOffset+aLen > aBuf.length) {
-        if (error) {
-            *error = [BerTlvErrors outOfRangeAtOffset:aOffset length:aLen bufferLength:(unsigned long) aBuf.length level:aLevel];
-        }
-    }
-
     NSString *levelPadding = IS_DEBUG_ENABLED ? [self createLevelPadding:aLevel] : @"";
     if(IS_DEBUG_ENABLED) {
         NSLog(@"%@parseWithResult( level=%d, offset=%d, len=%d, buf=%@)"
@@ -106,7 +104,6 @@ static int IS_DEBUG_ENABLED = 0;
         }
         *aOutResult = resultOffset;
         return [[BerTlv alloc] init:tag array:array];
-
     } else {
         NSRange range = {aOffset+tagBytesCount+lengthBytesCount, valueLength};
         uint resultOffset = aOffset + tagBytesCount + lengthBytesCount + valueLength;
@@ -214,6 +211,13 @@ static int IS_DEBUG_ENABLED = 0;
     uint startPosition = aOffset + aTagBytesCount + aDataBytesCount;
     uint len = aValueLength;
 
+    if (startPosition + len > aBuf.length) {
+        if (error) {
+            *error = [BerTlvErrors outOfRangeAtOffset:aOffset length:aValueLength bufferLength:aBuf.length level:aLevel];
+        }
+        return;
+    }
+    
     while (startPosition < aOffset + aValueLength) {
         uint result = 0;
         BerTlv *tlv = [self parseWithResult:&result data:aBuf offset:startPosition len:len level:aLevel+1 error:error];
@@ -228,7 +232,7 @@ static int IS_DEBUG_ENABLED = 0;
         len           = aValueLength - startPosition;
 
         if(IS_DEBUG_ENABLED) {
-            NSLog(@"%@level %d: adding %@ with offset %d, startPosition=%d, aDataBytesCount=%d, valueLength=%d"
+            NSLog(@"%@level %d: adding %@ with offset %d, startPosition=%d, aDataBytesCount=%d, valueLength=%u"
                     , aLevelPadding, aLevel, tlv.tag, result, startPosition,  aDataBytesCount, aValueLength
             );
         }

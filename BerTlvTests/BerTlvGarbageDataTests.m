@@ -63,7 +63,7 @@
     BerTlvParser *parser = [[BerTlvParser alloc] init];
 
     NSInteger maxSize = 2048;
-    NSInteger count = 1000; // increase this number to run the fuzzer longer.
+    NSInteger count = 10000; // increase this number to run the fuzzer longer.
     NSInteger failCount = 0;
 
     for (NSInteger i = 0; i < count; i++) {
@@ -78,7 +78,9 @@
             failCount++;
         }
         double timePassed_ms = [startTime timeIntervalSinceNow] * -1000.0;
-        NSLog(@"Took %f", timePassed_ms);
+        if (timePassed_ms > 1.0) {
+            NSLog(@"Took suspiciously long (%fs) to parse:\n%@", timePassed_ms, rndData);
+        }
     }
     NSLog(@"fuzzer crashed %ld from %ld runs, with max length %ld", (long)failCount, (long)count, (long)maxSize);
 }
