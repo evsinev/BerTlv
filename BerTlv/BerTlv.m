@@ -76,11 +76,9 @@
     return array;
 }
 
-- (NSString *)hexValueWithError:(NSError **)error {
+- (NSString *)hexValue {
     if (constructed) {
-        if (error) {
-            *error = [BerTlvErrors tagNotPrimative:tag];
-        }
+        NSLog(@"Tag %@ is constructed", tag);
         return nil;
     } else {
         return [HexUtil format:value];
@@ -95,7 +93,7 @@
     NSMutableString *sb = [[NSMutableString alloc] init];
 
     if(primitive) {
-        [sb appendFormat:@"%@ - [%@] %@\n", aPadding, tag.hex, [self hexValueWithError:nil]];
+        [sb appendFormat:@"%@ - [%@] %@\n", aPadding, tag.hex, [self hexValue]];
     } else {
         [sb appendFormat:@"%@ + [%@]\n", aPadding, tag.hex];
         NSMutableString *childPadding = [[NSMutableString alloc] init];

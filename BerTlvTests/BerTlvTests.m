@@ -80,7 +80,7 @@
 }
 
 - (void)testHexValue {
-    [self assertString:@"4D3030302D4D5049" actual:[[tlv find:TAG_DF0D] hexValueWithError:nil]];
+    [self assertString:@"4D3030302D4D5049" actual:[[tlv find:TAG_DF0D] hexValue]];
 }
 
 //- (void)testIntValue {

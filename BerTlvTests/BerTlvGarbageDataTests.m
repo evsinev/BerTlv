@@ -22,7 +22,7 @@
 - (void)testHexValueOnConstructedTagLogsError {
     BerTag *tag = [[BerTag alloc] init:0xff];
     BerTlv *tlv = [[BerTlv alloc] init:tag array:@[]];
-    NSString *hexValue = [tlv hexValueWithError:nil];
+    NSString *hexValue = [tlv hexValue];
     
     XCTAssertNil(hexValue);
 }

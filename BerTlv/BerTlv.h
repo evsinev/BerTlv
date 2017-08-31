@@ -26,7 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (BerTlv * _Nullable)  find:(BerTag *)aTag;
 - (NSArray *) findAll:(BerTag *)aTag;
 
-- (NSString * _Nullable) hexValueWithError:(NSError **)error;
+- (NSString * _Nullable) hexValue;
 - (NSString * _Nullable) textValue;
 
 - (NSString *) dump:(NSString *)aPadding;

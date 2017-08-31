@@ -12,7 +12,6 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSError *)invalidHexString;
 + (NSError *)outOfRangeAtOffset:(uint)aOffset length:(NSUInteger)aLen bufferLength:(NSUInteger)aBufLen level:(NSUInteger)aLevel;
 + (NSError *)badLengthAtOffset:(uint)aOffset numberOfBytes:(NSUInteger)numberOfBytes;
-+ (NSError *)tagNotPrimative:(BerTag *)aTag;
 
 @end
 NS_ASSUME_NONNULL_END
