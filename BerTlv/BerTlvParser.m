@@ -98,6 +98,7 @@ static int IS_DEBUG_ENABLED = 0;
            dataBytesCount:lengthBytesCount
               valueLength:valueLength
                     array:array
+                    error:error
         ];
         uint resultOffset = aOffset + tagBytesCount + lengthBytesCount + valueLength;
         if(IS_DEBUG_ENABLED) {
@@ -207,6 +208,7 @@ static int IS_DEBUG_ENABLED = 0;
       dataBytesCount:(uint)aDataBytesCount
          valueLength:(uint)aValueLength
                array:(NSMutableArray *)aList
+               error:(NSError **)error
 {
 
     uint startPosition = aOffset + aTagBytesCount + aDataBytesCount;
@@ -214,9 +216,12 @@ static int IS_DEBUG_ENABLED = 0;
 
     while (startPosition < aOffset + aValueLength) {
         uint result = 0;
-        BerTlv *tlv = [self parseWithResult:&result data:aBuf offset:startPosition len:len level:aLevel+1 error:nil];
+        BerTlv *tlv = [self parseWithResult:&result data:aBuf offset:startPosition len:len level:aLevel+1 error:error];
         if (tlv != nil) {
             [aList addObject:tlv];
+        }
+        if (error) {
+            return;
         }
         
         startPosition = result;

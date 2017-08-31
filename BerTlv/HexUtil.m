@@ -104,9 +104,11 @@ static uint8_t HEX_BYTE_SKIP = 99;
     NSMutableString *sb = [[NSMutableString alloc] initWithCapacity:aData.length*2];
     uint8_t const *bytes = aData.bytes;
     NSUInteger max = aOffset+aLen;
-    for(NSUInteger i=aOffset; i < max; i++) {
-        uint8_t b = bytes[i];
-        [sb appendFormat:@"%02X", b];
+    if (max <= aData.length) {
+        for(NSUInteger i=aOffset; i < max; i++) {
+            uint8_t b = bytes[i];
+            [sb appendFormat:@"%02X", b];
+        }
     }
     return [sb copy];
 }
