@@ -10,6 +10,7 @@
 @class BerTag;
 
 
+NS_ASSUME_NONNULL_BEGIN
 @interface BerTlvBuilder : NSObject
 
 // initialize
@@ -35,3 +36,4 @@
 - (void) addHex     :(NSString   *) aHex     tag:(BerTag *)aTag;
 
 @end
+NS_ASSUME_NONNULL_END

@@ -9,8 +9,7 @@
 
 
 @implementation BerTlvs {
-
-
+    
 }
 
 @synthesize list;
