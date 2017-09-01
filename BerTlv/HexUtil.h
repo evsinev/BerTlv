@@ -17,4 +17,3 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSString *)format:(NSData *)data offset:(uint)offset len:(NSUInteger)len;
 @end
 NS_ASSUME_NONNULL_END
-

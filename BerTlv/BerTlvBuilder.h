@@ -20,20 +20,21 @@ NS_ASSUME_NONNULL_BEGIN
 - (id)initWithTemplate :(BerTag  * ) aTag  ;
 
 // build
-- (NSData  *) buildData ;
-- (BerTlvs *) buildTlvs ;
-- (BerTlv  *) buildTlv  ;
+- (NSData  * _Nullable) buildDataWithError:(NSError **)error  ;
+- (BerTlvs * _Nullable) buildTlvsWithError:(NSError **)error  ;
+- (BerTlv  * _Nullable) buildTlvWithError:(NSError **)error   ;
 
 // add values
-- (void) addBerTlv  :(BerTlv     *) aTlv ;
-- (void) addBerTlvs :(BerTlvs    *) aTlvs;
-- (void) addAmount  :(NSDecimalNumber  *) aAmount  tag:(BerTag *)aTag;
+// return BOOL indicates success
+- (BOOL) addBerTlv  :(BerTlv     *) aTlv ;
+- (BOOL) addBerTlvs :(BerTlvs    *) aTlvs;
+- (BOOL) addAmount  :(NSDecimalNumber  *) aAmount  tag:(BerTag *)aTag;
 - (void) addDate    :(NSDate     *) aDate    tag:(BerTag *)aTag;
 - (void) addTime    :(NSDate     *) aTime    tag:(BerTag *)aTag;
-- (void) addText    :(NSString   *) aText    tag:(BerTag *)aTag;
-- (void) addBcd     :(NSUInteger  ) aValue   tag:(BerTag *)aTag length:(NSUInteger )aLength;
-- (void) addBytes   :(NSData     *) aBuf     tag:(BerTag *)aTag;
-- (void) addHex     :(NSString   *) aHex     tag:(BerTag *)aTag;
+- (BOOL) addText    :(NSString   *) aText    tag:(BerTag *)aTag;
+- (BOOL) addBcd     :(NSUInteger  ) aValue   tag:(BerTag *)aTag length  :(NSUInteger )aLength;
+- (BOOL) addBytes   :(NSData     *) aBuf     tag:(BerTag *)aTag;
+- (BOOL) addHex     :(NSString   *) aHex     tag:(BerTag *)aTag;
 
 @end
 NS_ASSUME_NONNULL_END

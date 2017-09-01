@@ -9,6 +9,7 @@
 #import "BerTag.h"
 #import "HexUtil.h"
 #import "BerTlvParser.h"
+#import "BerTlvErrors.h"
 
 
 @implementation BerTlvBuilder {
@@ -59,17 +60,17 @@
     return self;
 }
 
-- (void)addBcd:(NSUInteger )aValue tag:(BerTag *)aTag length:(NSUInteger )aLength {
+- (BOOL)addBcd:(NSUInteger )aValue tag:(BerTag *)aTag length:(NSUInteger )aLength {
     NSMutableString *hex = [NSMutableString stringWithFormat:@"%@", @(aValue)];
     for(int i=0; hex.length < aLength*2 && i<100; i++) {
         [hex insertString:@"0" atIndex:0];
     }
-    [self addHex:hex tag:aTag];
+    return [self addHex:hex tag:aTag];
 }
 
-- (void)addAmount:(NSDecimalNumber *)aAmount tag:(BerTag *)aTag {
+- (BOOL)addAmount:(NSDecimalNumber *)aAmount tag:(BerTag *)aTag {
     NSUInteger cents = [aAmount decimalNumberByMultiplyingBy:[[NSDecimalNumber alloc] initWithInt:100]].unsignedIntegerValue;
-    [self addBcd:cents tag:aTag length:6];
+    return [self addBcd:cents tag:aTag length:6];
 }
 
 - (void)addDate:(NSDate *)aDate tag:(BerTag *)aTag {
@@ -86,29 +87,34 @@
     [self addHex:hex tag:aTag];
 }
 
-- (void)addBytes:(NSData *)aBuf tag:(BerTag *)aTag {
+- (BOOL)addBytes:(NSData *)aBuf tag:(BerTag *)aTag {
+    NSData * lenData = [self createLengthData:aBuf.length error:nil];
+    if (lenData == nil) {
+        return NO;
+    }
+    
     // TYPE
     [data appendData:aTag.data];
 
     // LEN
-    NSData * lenData = [self createLengthData:aBuf.length];
     [data appendData:lenData];
 
     // VALUE
     [data appendData:aBuf];
+    return YES;
 }
 
-- (void)addText:(NSString *)aText tag:(BerTag *)aTag {
+- (BOOL)addText:(NSString *)aText tag:(BerTag *)aTag {
     NSData *buf = [aText dataUsingEncoding:NSASCIIStringEncoding];
-    [self addBytes:buf tag:aTag];
+    return [self addBytes:buf tag:aTag];
 }
 
-- (void)addHex:(NSString *)aHex tag:(BerTag *)aTag {
+- (BOOL)addHex:(NSString *)aHex tag:(BerTag *)aTag {
     NSData *buf = [HexUtil parse:aHex];
-    [self addBytes:buf tag:aTag];
+    return [self addBytes:buf tag:aTag];
 }
 
-- (NSData *)buildData {
+- (NSData *)buildDataWithError:(NSError **)error {
     // no template tag so can simply return data buffer
     if (templateTag == nil) {
         return data;
@@ -116,8 +122,11 @@
 
     // calculates bytes count for TYPE and LENGTH
     NSUInteger typeBytesCount   = templateTag.data.length;
-    NSUInteger lengthBytesCount = [self calcBytesCountForLength:data.length];
-
+    NSUInteger lengthBytesCount = [self calcBytesCountForLength:data.length error:error];
+    if (lengthBytesCount == 0) {
+        return nil;
+    }
+    
     NSMutableData *ret = [[NSMutableData alloc] initWithCapacity:
                      + typeBytesCount
                      + lengthBytesCount
@@ -128,17 +137,19 @@
     [ret appendData:templateTag.data];
 
     // LENGTH
-    NSData *lengthData = [self createLengthData:data.length];
+    NSData *lengthData = [self createLengthData:data.length error:error];
+    if (lengthData == nil) {
+        return nil;
+    }
     [ret appendData:lengthData];
 
     // VALUE
     [ret appendData:data];
 
     return ret;
-
 }
 
-- (NSData *)createLengthData:(NSUInteger)aLength {
+- (NSData *)createLengthData:(NSUInteger)aLength error:(NSError **)error {
     if(aLength < 0x80) {
         uint8_t buf[1];
         buf[0] = (uint8_t) aLength;
@@ -166,24 +177,24 @@
         return [NSData dataWithBytes:buf length:4];
 
     } else {
-        @throw([NSException exceptionWithName:@"LengthOutOfRangeException"
-                                       reason:[NSString stringWithFormat:@"Length [%lu] is out of range ( > 0x1000000)", (unsigned long) aLength]
-                                     userInfo:nil]);
+        NSLog(@"Length [%lu] is out of range ( > 0x1000000)", (unsigned long) aLength);
+        return nil;
     }
-
 }
 
-- (BerTlv *)buildTlv {
+- (BerTlv *)buildTlvWithError:(NSError **)error {
     BerTlvParser * parser = [[BerTlvParser alloc] init];
-    return [parser parseConstructed:[self buildData] error:nil];
+    NSData *builtData = [self buildDataWithError:error];
+    return builtData ? [parser parseConstructed:builtData error:error] : nil;
 }
 
-- (BerTlvs *)buildTlvs {
+- (BerTlvs *)buildTlvsWithError:(NSError **)error {
     BerTlvParser * parser = [[BerTlvParser alloc] init];
-    return [parser parseTlvs:[self buildData] error:nil];
+    NSData *builtData = [self buildDataWithError:error];
+    return builtData ? [parser parseTlvs:builtData error:error] : nil;
 }
 
-- (NSUInteger) calcBytesCountForLength:(NSUInteger)aLength {
+- (NSUInteger) calcBytesCountForLength:(NSUInteger)aLength error:(NSError **)error {
     NSUInteger ret;
     if(aLength < 0x80) {
         ret = 1;
@@ -194,18 +205,19 @@
     } else if( aLength < 0x1000000 ) {
         ret = 4;
     } else {
-        @throw([NSException exceptionWithName:@"LengthOutOfRangeException"
-                                       reason:[NSString stringWithFormat:@"Length [%lu] is out of range ( > 0x1000000)", (unsigned long) aLength]
-                                     userInfo:nil]);
+        ret = 0;
+        if (error) {
+            *error = [BerTlvErrors lengthOutOfRange:(unsigned long) aLength];
+        }
     }
     return ret;
 }
 
 
-- (void)addBerTlv:(BerTlv *)aTlv {
+- (BOOL)addBerTlv:(BerTlv *)aTlv {
     // primitive
     if(aTlv.primitive) {
-        [self addBytes:aTlv.value tag:aTlv.tag];
+        return [self addBytes:aTlv.value tag:aTlv.tag];
 
     // constructed
     } else {
@@ -213,14 +225,23 @@
         for (BerTlv *tlv in aTlv.list) {
             [builder addBerTlv:tlv];
         }
-        [data appendData:builder.buildData];
+        NSData *builtData = [builder buildDataWithError:nil];
+        if (builtData) {
+            [data appendData:builtData];
+            return YES;
+        }
+        return NO;
     }
 }
 
-- (void)addBerTlvs:(BerTlvs *)aTlvs {
+- (BOOL)addBerTlvs:(BerTlvs *)aTlvs {
     for (BerTlv *tlv in aTlvs.list) {
-        [self addBerTlv:tlv];
+        BOOL success = [self addBerTlv:tlv];
+        if (!success) {
+            return NO;
+        }
     }
+    return YES;
 }
 
 

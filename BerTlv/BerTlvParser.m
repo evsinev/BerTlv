@@ -11,7 +11,7 @@
 #import "BerTlvErrors.h"
 
 
-static int IS_DEBUG_ENABLED = 0;
+static int IS_DEBUG_ENABLED = 0; // note, running the testFuzzer with this enabled will take a long time.
 
 @implementation BerTlvParser
 
@@ -45,10 +45,6 @@ static int IS_DEBUG_ENABLED = 0;
         }
 
         offset = result;
-        
-//        if (error) {
-//            break;
-//        }
     }
 
     return [[BerTlvs alloc] init:list];
@@ -223,9 +219,6 @@ static int IS_DEBUG_ENABLED = 0;
         BerTlv *tlv = [self parseWithResult:&result data:aBuf offset:startPosition len:len level:aLevel+1 error:error];
         if (tlv != nil) {
             [aList addObject:tlv];
-        }
-        if (error) {
-            return;
         }
         
         startPosition = result;
