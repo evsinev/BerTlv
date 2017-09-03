@@ -42,8 +42,10 @@
     BerTlvBuilder *builder = [[BerTlvBuilder alloc] init];
     [builder addHex:@"56495341" tag:TAG_50];
     [builder addHex:@"1000023100000033D44122011003400000481F" tag:TAG_57];
-    NSData *data = builder.buildData;
-
+    NSError *dataError;
+    NSData *data = [builder buildDataWithError:&dataError];
+    XCTAssertNil(dataError);
+    
     //    - [50] 56495341
     //    - [57] 1000023100000033D44122011003400000481F
     NSString *expected =
@@ -53,7 +55,9 @@
     ;
 
     [self assertHex:expected actual:data];
-    BerTlvs *tlvs = builder.buildTlvs;
+    NSError *tlvsError;
+    BerTlvs *tlvs = [builder buildTlvsWithError:&tlvsError];
+    XCTAssertNil(tlvsError);
     XCTAssertEqual(2, tlvs.list.count);
     NSLog(@"data is\n%@", [tlvs dump:@"  "]);
 }
@@ -64,11 +68,13 @@
         [builder addHex:@"F9128478E28F860D8424000008514C8F" tag:TAG_86];
     }
 
-    BerTlvs *tlvs = builder.buildTlvs;
+    NSError *error;
+    BerTlvs *tlvs = [builder buildTlvsWithError:&error];
+    XCTAssertNil(error);
     XCTAssertEqual(1, tlvs.list.count);
     XCTAssertEqual(10, [tlvs findAll:TAG_86].count);
 
-    NSLog(@"data is\n%@", [builder.buildTlvs dump:@"  "]);
+    NSLog(@"data is\n%@", [tlvs dump:@"  "]);
 }
 
 - (void) testInitWithPrimitiveTlv {
@@ -77,9 +83,10 @@
 
     BerTlvBuilder *builder = [[BerTlvBuilder alloc] initWithTlv:primitiveTlv];
 
-    [self assertHex:@"8610F9128478E28F860D8424000008514C8F" actual:builder.buildData];
-    XCTAssertTrue(builder.buildTlv.primitive);
-    NSLog(@"testInitWithPrimitiveTlv = \n%@", [builder.buildTlv dump:@"  "]);
+    NSData *data = [builder buildDataWithError:nil];
+    [self assertHex:@"8610F9128478E28F860D8424000008514C8F" actual:data];
+    XCTAssertTrue([builder buildTlvWithError:nil].primitive);
+    NSLog(@"testInitWithPrimitiveTlv = \n%@", [[builder buildTlvWithError:nil] dump:@"  "]);
 }
 
 - (void) testInitWithConstructedTlv {
@@ -89,48 +96,48 @@
         [b0 addHex:@"F9128478E28F860D8424000008514C8F" tag:TAG_86];
     }
 
-    BerTlv *constructedTlv = b0.buildTlv;
+    BerTlv *constructedTlv = [b0 buildTlvWithError:nil];
 
     BerTlvBuilder *builder = [[BerTlvBuilder alloc] initWithTlv:constructedTlv];
 
-    BerTlv *stage1 = builder.buildTlv;
+    BerTlv *stage1 = [builder buildTlvWithError:nil];
     XCTAssertTrue(stage1.constructed);
     XCTAssertEqual(10, stage1.list.count);
     XCTAssertEqual(10, [stage1 findAll:TAG_86].count);
 
     [builder addHex:@"F9128478E28F860D8424000008514C8F" tag:TAG_86];
-    BerTlv *stage2 = builder.buildTlv;
+    BerTlv *stage2 = [builder buildTlvWithError:nil];
     XCTAssertTrue(stage2.constructed);
     XCTAssertEqual(11, stage2.list.count);
     XCTAssertEqual(11, [stage2 findAll:TAG_86].count);
-    NSLog(@"testInitWithConstructedTlv = \n%@", [b0.buildTlv dump:@"  "]);
+    NSLog(@"testInitWithConstructedTlv = \n%@", [[b0 buildTlvWithError:nil] dump:@"  "]);
 }
 
 
 - (void)testAddText {
     BerTlvBuilder *builder = [[BerTlvBuilder alloc] init];
     [builder addText:@"12345" tag:TAG_PRIMITIVE];
-    [self assertHex:@"86053132333435" actual:builder.buildData];
+    [self assertHex:@"86053132333435" actual:[builder buildDataWithError:nil]];
 }
 
 - (void)testAddBcd {
     BerTlvBuilder *builder = [[BerTlvBuilder alloc] init];
     [builder addBcd:12345 tag:TAG_PRIMITIVE length:6];
-    [self assertHex:@"8606000000012345" actual:builder.buildData];
+    [self assertHex:@"8606000000012345" actual:[builder buildDataWithError:nil]];
 }
 
 - (void)testAddAmount {
     BerTlvBuilder *builder = [[BerTlvBuilder alloc] init];
     NSDecimalNumber * amount = [[NSDecimalNumber alloc] initWithString:@"1234.56"];
     [builder addAmount:amount tag:TAG_PRIMITIVE];
-    [self assertHex:@"8606000000123456" actual:builder.buildData];
+    [self assertHex:@"8606000000123456" actual:[builder buildDataWithError:nil]];
 }
 
 - (void)testAddAmount270 {
     BerTlvBuilder *builder = [[BerTlvBuilder alloc] init];
     NSDecimalNumber * amount = [NSDecimalNumber decimalNumberWithString:@"000270.00001"];
     [builder addAmount:amount tag:[BerTag parse:@"9f 02"]];
-    [self assertHex:@"9f0206000000027000" actual:builder.buildData];
+    [self assertHex:@"9f0206000000027000" actual:[builder buildDataWithError:nil]];
 }
 
 - (void)testAddDate {
@@ -142,7 +149,7 @@
 
     [builder addDate:date tag:TAG_PRIMITIVE];
 
-    [self assertHex:@"8603140701" actual:builder.buildData];
+    [self assertHex:@"8603140701" actual:[builder buildDataWithError:nil]];
 }
 
 - (void)testAddTime {
@@ -154,7 +161,7 @@
 
     [builder addTime:date tag:TAG_PRIMITIVE];
 
-    [self assertHex:@"8603160630" actual:builder.buildData];
+    [self assertHex:@"8603160630" actual:[builder buildDataWithError:nil]];
 }
 
 
@@ -175,21 +182,21 @@
         [b0 addHex:@"F9128478E28F860D8424000008514C8F" tag:TAG_86];
     }
 
-    BerTlvs *constructedTlvs = b0.buildTlvs;
-    NSLog(@"testInitWithTlvs constructedTlv = \n%@", [b0.buildTlv dump:@"  "]);
+    BerTlvs *constructedTlvs = [b0 buildTlvsWithError:nil];
+    NSLog(@"testInitWithTlvs constructedTlv = \n%@", [[b0 buildTlvsWithError:nil] dump:@"  "]);
 
     BerTlvBuilder *builder = [[BerTlvBuilder alloc] initWithTlvs:constructedTlvs];
 
-    BerTlvs *stage1 = builder.buildTlvs;
-    NSLog(@"testInitWithTlvs stage1 = \n%@", [b0.buildTlv dump:@"  "]);
+    BerTlvs *stage1 = [builder buildTlvsWithError:nil];
+    NSLog(@"testInitWithTlvs stage1 = \n%@", [[b0 buildTlvsWithError:nil] dump:@"  "]);
     XCTAssertEqual(10, stage1.list.count);
     XCTAssertEqual(10, [stage1 findAll:TAG_86].count);
 
     [builder addHex:@"F9128478E28F860D8424000008514C8F" tag:TAG_86];
-    BerTlvs *stage2 = builder.buildTlvs;
+    BerTlvs *stage2 = [builder buildTlvsWithError:nil];
     XCTAssertEqual(11, stage2.list.count);
     XCTAssertEqual(11, [stage2 findAll:TAG_86].count);
-    NSLog(@"testInitWithTlvs = \n%@", [b0.buildTlv dump:@"  "]);
+    NSLog(@"testInitWithTlvs = \n%@", [[b0 buildTlvsWithError:nil] dump:@"  "]);
 }
 
 

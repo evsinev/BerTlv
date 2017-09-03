@@ -5,11 +5,12 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
 @interface BerTag : NSObject
 
 @property(nonatomic, copy) NSData *data;;
 
-- (id) init:(NSData *)aData
+- (id _Nullable) init:(NSData *)aData
      offset:(uint)aOffset
      length:(uint)aLength;
 
@@ -28,3 +29,4 @@
 
 + (BerTag *)parse:(NSString *)aHexString;
 @end
+NS_ASSUME_NONNULL_END

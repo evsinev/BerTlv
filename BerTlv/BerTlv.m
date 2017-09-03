@@ -9,6 +9,7 @@
 #import "BerTlv.h"
 #import "BerTag.h"
 #import "HexUtil.h"
+#import "BerTlvErrors.h"
 
 @implementation BerTlv
 
@@ -49,7 +50,7 @@
         return nil;
     }
     
-    for( BerTlv * tlv in list) {
+    for(BerTlv *tlv in list) {
         BerTlv *found = [tlv find:aTag];
         if(found!=nil) {
             return found;
@@ -76,22 +77,17 @@
 }
 
 - (NSString *)hexValue {
-    [self checkPrimitive];
-    return [HexUtil format:value];
+    if (constructed) {
+        NSLog(@"Tag %@ is constructed", tag);
+        return nil;
+    } else {
+        return [HexUtil format:value];
+    }
 }
 
 - (NSString *)textValue {
     return [[NSString alloc] initWithData:self.value encoding:NSASCIIStringEncoding];
 }
-
-- (void)checkPrimitive {
-    if(constructed) {
-        @throw([NSException exceptionWithName:@"NotPrimitiveTagException"
-                                       reason:[NSString stringWithFormat:@"Tag %@ is constructed", tag]
-                                     userInfo:nil]);
-    }
-}
-
 
 - (NSString *)dump:(NSString *)aPadding {
     NSMutableString *sb = [[NSMutableString alloc] init];
@@ -107,7 +103,7 @@
             [sb appendString:[tlv dump:childPadding]];
         }
     }
-    return sb;
+    return [sb copy];
 }
 
 

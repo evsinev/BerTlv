@@ -51,7 +51,7 @@
 
     NSData *data = [HexUtil parse:hex];
     BerTlvParser *parser = [[BerTlvParser alloc] init];
-    BerTlv *tlv = [parser parseConstructed:data];
+    BerTlv *tlv = [parser parseConstructed:data error:nil];
 
     TAG_DF7F   = [BerTag parse:@"DF 7F"];
     TAG_E1     = [BerTag parse:@"E1"];

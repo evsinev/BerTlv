@@ -8,36 +8,37 @@
 #import "HexUtil.h"
 #import "BerTag.h"
 #import "BerTlvs.h"
+#import "BerTlvErrors.h"
 
 
-static int IS_DEBUG_ENABLED = 0;
+static int IS_DEBUG_ENABLED = 0; // note, running the testFuzzer with this enabled will take a long time.
 
-@implementation BerTlvParser {
+@implementation BerTlvParser
 
-
-
-}
-- (BerTlv *)parseConstructed:(NSData *)aData {
+- (BerTlv *)parseConstructed:(NSData *)aData error:(NSError **)error {
     uint result=0;
-    BerTlv * ret = [self parseWithResult:&result data:aData offset:0 len:(uint)aData.length level:0];
+    BerTlv * ret = [self parseWithResult:&result data:aData offset:0 len:(uint)aData.length level:0 error: error];
     return ret;
 }
 
-- (BerTlvs *)parseTlvs:(NSData *)aData {
-    return [self parseTlvs:aData numberOfTags:100];
+- (BerTlvs *)parseTlvs:(NSData *)aData error:(NSError **)error {
+    return [self parseTlvs:aData numberOfTags:100 error:error];
 }
 
-- (BerTlvs *)parseTlvs:(NSData *)aData numberOfTags:(NSUInteger) numberOfTags {
+- (BerTlvs *)parseTlvs:(NSData *)aData numberOfTags:(NSUInteger) numberOfTags error:(NSError **)error {
     if(aData.length==0) {
         return [[BerTlvs alloc] init:[[NSArray alloc] init]];
     }
-
+    
     NSMutableArray *list = [[NSMutableArray alloc] init];
-    int offset = 0;
+    uint offset = 0;
     for(uint i=0; i<numberOfTags; i++) {
         uint result=0;
-        BerTlv * ret = [self parseWithResult:&result data:aData offset:offset len:(uint)aData.length-offset level:0];
-        [list addObject:ret];
+        BerTlv * ret = [self parseWithResult:&result data:aData offset:offset len:(uint)aData.length-offset level:0 error:error];
+        
+        if (ret != nil) {
+            [list addObject:ret];
+        }
 
         if (result >= aData.length) {
             break;
@@ -54,14 +55,8 @@ static int IS_DEBUG_ENABLED = 0;
                      offset:(uint)aOffset
                         len:(uint)aLen
                       level:(uint)aLevel
+                      error:(NSError **)error
 {
-    if(aOffset+aLen > aBuf.length) {
-        @throw([NSException exceptionWithName:@"OutOfRangeException"
-                                       reason:[NSString stringWithFormat:@"Length is out of the range [offset=%d,  len=%d, array.length=%lu, level=%d]"
-                                               , aOffset, aLen, (unsigned long) aBuf.length, aLevel]
-                                     userInfo:nil]);
-    }
-
     NSString *levelPadding = IS_DEBUG_ENABLED ? [self createLevelPadding:aLevel] : @"";
     if(IS_DEBUG_ENABLED) {
         NSLog(@"%@parseWithResult( level=%d, offset=%d, len=%d, buf=%@)"
@@ -72,10 +67,14 @@ static int IS_DEBUG_ENABLED = 0;
     // TAG
     uint tagBytesCount = [self calcTagBytesCount:aBuf offset:aOffset];
     BerTag *tag = [self createTag:aBuf offset:aOffset len:tagBytesCount pad:levelPadding];
-
+    
     // LENGTH
     uint lengthBytesCount = [self calcLengthBytesCount:aBuf offset:aOffset + tagBytesCount];
-    uint valueLength = [self calcDataLength:aBuf offset:aOffset + tagBytesCount];
+    NSError *lengthErr;
+    uint valueLength = [self calcDataLength:aBuf offset:aOffset + tagBytesCount error:&lengthErr];
+    if (lengthErr && error) {
+        *error = lengthErr;
+    }
 
     if(IS_DEBUG_ENABLED) {
         NSLog(@"%@lenBytesCount = %d, len = %d, lenBuf = %@"
@@ -93,6 +92,7 @@ static int IS_DEBUG_ENABLED = 0;
            dataBytesCount:lengthBytesCount
               valueLength:valueLength
                     array:array
+                    error:error
         ];
         uint resultOffset = aOffset + tagBytesCount + lengthBytesCount + valueLength;
         if(IS_DEBUG_ENABLED) {
@@ -100,22 +100,29 @@ static int IS_DEBUG_ENABLED = 0;
         }
         *aOutResult = resultOffset;
         return [[BerTlv alloc] init:tag array:array];
-
     } else {
         NSRange range = {aOffset+tagBytesCount+lengthBytesCount, valueLength};
-        NSData *value = [aBuf subdataWithRange:range];
         uint resultOffset = aOffset + tagBytesCount + lengthBytesCount + valueLength;
-
+        *aOutResult = resultOffset;
+        
+        if (range.location + range.length > aBuf.length) {
+            return nil;
+        }
+        NSData *value = [aBuf subdataWithRange:range];;
+        
         if(IS_DEBUG_ENABLED) {
             NSLog(@"%@Primitive value = %@", levelPadding, [HexUtil format:value]);
             NSLog(@"%@Returning primitive offset = %d", levelPadding, resultOffset );
         }
-        *aOutResult = resultOffset;
         return [[BerTlv alloc] init:tag value:value];
     }
 }
 
 - (uint)calcTagBytesCount:(NSData *)aBuf offset:(uint)aOffset {
+    if (aOffset > aBuf.length) {
+        return 1;
+    }
+    
     uint8_t const *bytes = aBuf.bytes;
     if((bytes[aOffset] & 0x1F) == 0x1F) { // see subsequent bytes
         uint len = 2;
@@ -129,8 +136,6 @@ static int IS_DEBUG_ENABLED = 0;
     } else {
         return 1;
     }
-
-
 }
 
 - (BerTag *) createTag:(NSData *)aBuf offset:(uint)aOffset len:(uint)aLen pad:(NSString *)aLevelPadding {
@@ -150,6 +155,10 @@ static int IS_DEBUG_ENABLED = 0;
 }
 
 - (uint) calcLengthBytesCount:(NSData *)aBuf offset:(uint)aOffset {
+    if (aOffset > aBuf.length) {
+        return 1;
+    }
+    
     uint8_t const *bytes = aBuf.bytes;
     uint len = (uint) bytes[aOffset];
     if( (len & 0x80) == 0x80) {
@@ -159,17 +168,20 @@ static int IS_DEBUG_ENABLED = 0;
     }
 }
 
--(uint) calcDataLength:(NSData *)aBuf offset:(uint) aOffset {
+-(uint) calcDataLength:(NSData *)aBuf offset:(uint) aOffset error:(NSError **)error {
+    if (aOffset > aBuf.length) {
+        return 1;
+    }
+    
     uint8_t const *bytes = aBuf.bytes;
     uint length = bytes[aOffset];
 
     if((length & 0x80) == 0x80) {
         int numberOfBytes = length & 0x7f;
         if(numberOfBytes>3) {
-            @throw([NSException exceptionWithName:@"BadLengthException"
-                                           reason:[NSString stringWithFormat:@"At position %d the len is more then 3 [%d]"
-                                                   , aOffset, numberOfBytes]
-                                         userInfo:nil]);
+            if (error) {
+                *error = [BerTlvErrors badLengthAtOffset:aOffset numberOfBytes:numberOfBytes];
+            }
         }
 
         length = 0;
@@ -189,21 +201,31 @@ static int IS_DEBUG_ENABLED = 0;
       dataBytesCount:(uint)aDataBytesCount
          valueLength:(uint)aValueLength
                array:(NSMutableArray *)aList
+               error:(NSError **)error
 {
 
     uint startPosition = aOffset + aTagBytesCount + aDataBytesCount;
     uint len = aValueLength;
 
+    if (startPosition + len > aBuf.length) {
+        if (error) {
+            *error = [BerTlvErrors outOfRangeAtOffset:aOffset length:aValueLength bufferLength:aBuf.length level:aLevel];
+        }
+        return;
+    }
+    
     while (startPosition < aOffset + aValueLength) {
         uint result = 0;
-        BerTlv *tlv = [self parseWithResult:&result data:aBuf offset:startPosition len:len level:aLevel+1];
-        [aList addObject:tlv];
-
+        BerTlv *tlv = [self parseWithResult:&result data:aBuf offset:startPosition len:len level:aLevel+1 error:error];
+        if (tlv != nil) {
+            [aList addObject:tlv];
+        }
+        
         startPosition = result;
         len           = aValueLength - startPosition;
 
         if(IS_DEBUG_ENABLED) {
-            NSLog(@"%@level %d: adding %@ with offset %d, startPosition=%d, aDataBytesCount=%d, valueLength=%d"
+            NSLog(@"%@level %d: adding %@ with offset %d, startPosition=%d, aDataBytesCount=%d, valueLength=%u"
                     , aLevelPadding, aLevel, tlv.tag, result, startPosition,  aDataBytesCount, aValueLength
             );
         }

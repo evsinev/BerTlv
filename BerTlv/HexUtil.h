@@ -5,13 +5,15 @@
 
 #import <Foundation/Foundation.h>
 
-
+NS_ASSUME_NONNULL_BEGIN
 @interface HexUtil : NSObject
 
 + (NSString *) format:(NSData *)aData;
 + (NSString *) prettyFormat:(NSData *)aData;
 
-+ (NSData *) parse:(NSString *)aHex;
++ (NSData * _Nullable) parse:(NSString *)aHex;
++ (NSData *) parse:(NSString *)aHex error:(NSError **)error;
 
 + (NSString *)format:(NSData *)data offset:(uint)offset len:(NSUInteger)len;
 @end
+NS_ASSUME_NONNULL_END

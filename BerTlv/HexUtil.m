@@ -4,6 +4,7 @@
 //
 
 #import "HexUtil.h"
+#import "BerTlvErrors.h"
 
 static uint8_t HEX_BYTES[] = {
        // 0   1   2   3   4   5   6   7   8   9   A   B   C   D   E   F
@@ -21,10 +22,7 @@ static uint8_t HEX_BYTES_LEN = 128;
 static uint8_t HEX_BYTE_SKIP = 99;
 
 
-@implementation HexUtil {
-
-
-}
+@implementation HexUtil
 
 + (NSString *)prettyFormat:(NSData *)aData {
     NSMutableString *sb = [[NSMutableString alloc] initWithCapacity:aData.length*2];
@@ -34,7 +32,7 @@ static uint8_t HEX_BYTE_SKIP = 99;
         uint8_t b = bytes[i];
         [sb appendFormat:@" %02X", b];
     }
-    return sb;
+    return [sb copy];
 }
 
 + (NSString *)format:(NSData *)aData {
@@ -42,6 +40,10 @@ static uint8_t HEX_BYTE_SKIP = 99;
 }
 
 + (NSData *)parse:(NSString *)aHex {
+    return [self parse:aHex error:nil];
+}
+
++ (NSData *) parse:(NSString *)aHex error:(NSError **)error {
     char const *text = [aHex cStringUsingEncoding:NSASCIIStringEncoding];
     size_t len = strnlen(text, aHex.length);
 
@@ -80,13 +82,21 @@ static uint8_t HEX_BYTE_SKIP = 99;
     }
 
     if(highPassed) {
-        @throw([NSException exceptionWithName:@"EvenException"
-                                       reason:[NSString stringWithFormat:@"Even count of HEX chars. Hex string is %@"
-                                               , aHex]
-                                     userInfo:nil]);
+        if (error) {
+            *error = [BerTlvErrors invalidHexString];
+        }
+        return nil;
     }
-    // returns immutable
-    return [NSData dataWithData:data];
+    
+    if ([data length] == 0) {
+        if (error) {
+            *error = [BerTlvErrors invalidHexString];
+        }
+        return nil;
+    } else {
+        // returns immutable
+        return [data copy];
+    }
 }
 
 
@@ -94,10 +104,13 @@ static uint8_t HEX_BYTE_SKIP = 99;
     NSMutableString *sb = [[NSMutableString alloc] initWithCapacity:aData.length*2];
     uint8_t const *bytes = aData.bytes;
     NSUInteger max = aOffset+aLen;
-    for(NSUInteger i=aOffset; i < max; i++) {
-        uint8_t b = bytes[i];
-        [sb appendFormat:@"%02X", b];
+    if (max <= aData.length) {
+        for(NSUInteger i=aOffset; i < max; i++) {
+            uint8_t b = bytes[i];
+            [sb appendFormat:@"%02X", b];
+        }
     }
-    return sb;
+    return [sb copy];
 }
+
 @end

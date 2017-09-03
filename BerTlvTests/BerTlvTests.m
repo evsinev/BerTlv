@@ -50,7 +50,7 @@
 
     NSData *data = [HexUtil parse:hex];
     BerTlvParser *parser = [[BerTlvParser alloc] init];
-    tlv = [parser parseConstructed:data];
+    tlv = [parser parseConstructed:data error:nil];
 
     TAG_DF7F   = [BerTag parse:@"DF 7F"];
     TAG_9F1E   = [BerTag parse:@"9F 1E"];
@@ -80,12 +80,12 @@
 }
 
 - (void)testHexValue {
-    [self assertString:@"4D3030302D4D5049" actual:[tlv find:TAG_DF0D].hexValue];
+    [self assertString:@"4D3030302D4D5049" actual:[[tlv find:TAG_DF0D] hexValue]];
 }
 
-- (void)testIntValue {
+//- (void)testIntValue {
 //    XCTAssertEqual(5561998523279167561, [tlv find:TAG_DF0D].intValue);
-}
+//}
 
 
 - (void)assertString:(NSString *)aExpected actual:(NSString *)aActual {

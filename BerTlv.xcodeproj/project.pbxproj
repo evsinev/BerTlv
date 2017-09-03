@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4BE6176E1F56BE9700F9CBD4 /* BerTlvErrors.h in Headers */ = {isa = PBXBuildFile; fileRef = 4BE6176C1F56BE9700F9CBD4 /* BerTlvErrors.h */; };
+		4BE6176F1F56BE9700F9CBD4 /* BerTlvErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE6176D1F56BE9700F9CBD4 /* BerTlvErrors.m */; };
+		4BE617701F56BF1D00F9CBD4 /* BerTlvErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE6176D1F56BE9700F9CBD4 /* BerTlvErrors.m */; };
+		4BE617751F56F00000F9CBD4 /* BerTlvGarbageDataTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE617741F56F00000F9CBD4 /* BerTlvGarbageDataTests.m */; };
 		8A4BEB4F198ED6C500707046 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A4BEB4E198ED6C500707046 /* Foundation.framework */; };
 		8A4BEB54198ED6C500707046 /* BerTlv.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8A4BEB53198ED6C500707046 /* BerTlv.h */; };
 		8A4BEB56198ED6C500707046 /* BerTlv.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A4BEB55198ED6C500707046 /* BerTlv.m */; };
@@ -75,6 +79,9 @@
 
 /* Begin PBXFileReference section */
 		4B9E63381E82B31E0051EA01 /* BerTlv.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = BerTlv.modulemap; sourceTree = "<group>"; };
+		4BE6176C1F56BE9700F9CBD4 /* BerTlvErrors.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BerTlvErrors.h; sourceTree = "<group>"; };
+		4BE6176D1F56BE9700F9CBD4 /* BerTlvErrors.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BerTlvErrors.m; sourceTree = "<group>"; };
+		4BE617741F56F00000F9CBD4 /* BerTlvGarbageDataTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BerTlvGarbageDataTests.m; sourceTree = "<group>"; };
 		8A4BEB4B198ED6C500707046 /* libBerTlvStatic.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBerTlvStatic.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A4BEB4E198ED6C500707046 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8A4BEB52198ED6C500707046 /* BerTlv-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BerTlv-Prefix.pch"; sourceTree = "<group>"; };
@@ -197,6 +204,8 @@
 				B2DF63B1FB5A3356C6A8BC63 /* BerTlvs.h */,
 				B2DF6CCDBA6480154AAA66AF /* BerTlvBuilder.m */,
 				B2DF630FA0DFAAEE5267F33E /* BerTlvBuilder.h */,
+				4BE6176C1F56BE9700F9CBD4 /* BerTlvErrors.h */,
+				4BE6176D1F56BE9700F9CBD4 /* BerTlvErrors.m */,
 			);
 			path = BerTlv;
 			sourceTree = "<group>";
@@ -220,6 +229,7 @@
 				B2DF60961F8D8EF9A49F457B /* BerTlvParserTests.m */,
 				B2DF6D4ED74F7E2C04459B89 /* BerTlvsTests.m */,
 				B2DF6DFB3D566DBD8B474A49 /* BerTlvBuilderTests.m */,
+				4BE617741F56F00000F9CBD4 /* BerTlvGarbageDataTests.m */,
 			);
 			path = BerTlvTests;
 			sourceTree = "<group>";
@@ -257,6 +267,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4BE6176E1F56BE9700F9CBD4 /* BerTlvErrors.h in Headers */,
 				8A858F501CE6156E00A3779C /* BerTag.h in Headers */,
 				8A858F521CE6156E00A3779C /* BerTlvParser.h in Headers */,
 				8A858F531CE6156E00A3779C /* BerTlvs.h in Headers */,
@@ -347,7 +358,7 @@
 		8A4BEB43198ED6C500707046 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "Evgeniy Sinev";
 				TargetAttributes = {
 					8A858F381CE6154600A3779C = {
@@ -416,6 +427,7 @@
 				B2DF61176FCB84C2ED25ADD5 /* BerTlvParser.m in Sources */,
 				B2DF65C52F004A588C3D3492 /* BerTlvs.m in Sources */,
 				B2DF6CF3341C45AA3C342B70 /* BerTlvBuilder.m in Sources */,
+				4BE617701F56BF1D00F9CBD4 /* BerTlvErrors.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -429,6 +441,7 @@
 				B2DF65E3590F35608BF654D3 /* BerTlvParserTests.m in Sources */,
 				B2DF65529F987575E4CEFAC5 /* BerTlvsTests.m in Sources */,
 				B2DF6396CCD74FFB97269FE7 /* BerTlvBuilderTests.m in Sources */,
+				4BE617751F56F00000F9CBD4 /* BerTlvGarbageDataTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -442,6 +455,7 @@
 				8A858F581CE6159100A3779C /* BerTlvParser.m in Sources */,
 				8A858F591CE6159100A3779C /* BerTlvs.m in Sources */,
 				8A858F5A1CE6159100A3779C /* BerTlvBuilder.m in Sources */,
+				4BE6176F1F56BE9700F9CBD4 /* BerTlvErrors.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -488,17 +502,29 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -525,17 +551,28 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -576,7 +613,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
@@ -587,6 +623,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "BerTlvTests/BerTlvTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.payneteasy.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -596,13 +633,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BerTlv/BerTlv-Prefix.pch";
 				INFOPLIST_FILE = "BerTlvTests/BerTlvTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.payneteasy.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -613,7 +650,7 @@
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
@@ -644,7 +681,7 @@
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";

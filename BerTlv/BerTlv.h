@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
 @class BerTag;
 
 @interface BerTlv : NSObject
@@ -22,12 +23,13 @@
 - (id)init:(BerTag *)aTag array:(NSArray *)aArray;
 
 - (BOOL)      hasTag:(BerTag *)aTag;
-- (BerTlv *)  find:(BerTag *)aTag;
+- (BerTlv * _Nullable)  find:(BerTag *)aTag;
 - (NSArray *) findAll:(BerTag *)aTag;
 
-- (NSString *) hexValue;
-- (NSString *) textValue;
+- (NSString * _Nullable) hexValue;
+- (NSString * _Nullable) textValue;
 
 - (NSString *) dump:(NSString *)aPadding;
 
 @end
+NS_ASSUME_NONNULL_END

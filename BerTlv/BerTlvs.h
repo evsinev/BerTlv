@@ -8,17 +8,18 @@
 @class BerTag;
 @class BerTlv;
 
-
+NS_ASSUME_NONNULL_BEGIN
 @interface BerTlvs : NSObject
 
-@property(copy, nonatomic, readonly) NSArray *  list        ;
+@property(copy, nonatomic, readonly) NSArray *  list;
 
 - (id)init:(NSArray *)aList;
 
-- (BerTlv *)  find   :(BerTag *)aTag;
+- (BerTlv * _Nullable)  find   :(BerTag *)aTag;
 - (NSArray *) findAll:(BerTag *)aTag;
 
 - (NSString *) dump:(NSString *)aPadding;
 
 
 @end
+NS_ASSUME_NONNULL_END
