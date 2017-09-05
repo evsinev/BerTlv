@@ -103,7 +103,7 @@
 }
 
 + (BerTag *)parse:(NSString *)aHexString {
-    NSData *data = [HexUtil parse:aHexString];
+    NSData *data = [HexUtil parse:aHexString error:nil];
     return [[BerTag alloc] init:data offset:0 length:(uint)data.length];
 }
 

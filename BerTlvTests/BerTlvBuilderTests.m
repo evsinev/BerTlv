@@ -79,7 +79,7 @@
 
 - (void) testInitWithPrimitiveTlv {
 
-    BerTlv *primitiveTlv = [[BerTlv alloc] init:TAG_86 value:[HexUtil parse:@"F9128478E28F860D8424000008514C8F"]];
+    BerTlv *primitiveTlv = [[BerTlv alloc] init:TAG_86 value:[HexUtil parse:@"F9128478E28F860D8424000008514C8F" error:nil]];
 
     BerTlvBuilder *builder = [[BerTlvBuilder alloc] initWithTlv:primitiveTlv];
 
@@ -167,7 +167,7 @@
 
 
 - (void)assertHex:(NSString *)aExpected actual:(NSData *)aData {
-    NSData   *expectedData = [HexUtil parse:aExpected];
+    NSData   *expectedData = [HexUtil parse:aExpected error:nil];
     NSString *expectedHex = [HexUtil format:expectedData];
     // NSLog(@"%@ -> %@", aHex, actual);
 

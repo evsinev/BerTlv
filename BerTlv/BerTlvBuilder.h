@@ -20,8 +20,13 @@ NS_ASSUME_NONNULL_BEGIN
 - (id)initWithTemplate :(BerTag  * ) aTag  ;
 
 // build
+- (NSData  *) buildData __deprecated;
 - (NSData  * _Nullable) buildDataWithError:(NSError **)error  ;
+
+- (BerTlvs *) buildTlvs __deprecated;
 - (BerTlvs * _Nullable) buildTlvsWithError:(NSError **)error  ;
+
+- (BerTlv  *) buildTlv  __deprecated;
 - (BerTlv  * _Nullable) buildTlvWithError:(NSError **)error   ;
 
 // add values

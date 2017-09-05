@@ -110,8 +110,12 @@
 }
 
 - (BOOL)addHex:(NSString *)aHex tag:(BerTag *)aTag {
-    NSData *buf = [HexUtil parse:aHex];
+    NSData *buf = [HexUtil parse:aHex error:nil];
     return [self addBytes:buf tag:aTag];
+}
+
+- (NSData  *) buildData __deprecated {
+    return [self buildDataWithError: nil];
 }
 
 - (NSData *)buildDataWithError:(NSError **)error {
@@ -182,10 +186,18 @@
     }
 }
 
+- (BerTlv *) buildTlv __deprecated {
+    return [self buildTlvWithError:nil];
+}
+
 - (BerTlv *)buildTlvWithError:(NSError **)error {
     BerTlvParser * parser = [[BerTlvParser alloc] init];
     NSData *builtData = [self buildDataWithError:error];
     return builtData ? [parser parseConstructed:builtData error:error] : nil;
+}
+
+- (BerTlvs *) buildTlvs __deprecated {
+    return [self buildTlvsWithError:nil];
 }
 
 - (BerTlvs *)buildTlvsWithError:(NSError **)error {

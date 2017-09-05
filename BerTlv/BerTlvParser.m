@@ -15,14 +15,26 @@ static int IS_DEBUG_ENABLED = 0; // note, running the testFuzzer with this enabl
 
 @implementation BerTlvParser
 
+- (BerTlv *)parseConstructed:(NSData *)aData __deprecated {
+    return [self parseConstructed:aData error:nil];
+}
+
 - (BerTlv *)parseConstructed:(NSData *)aData error:(NSError **)error {
     uint result=0;
     BerTlv * ret = [self parseWithResult:&result data:aData offset:0 len:(uint)aData.length level:0 error: error];
     return ret;
 }
 
+- (BerTlvs *)parseTlvs:(NSData *)aData __deprecated {
+    return [self parseTlvs:aData error:nil];
+}
+
 - (BerTlvs *)parseTlvs:(NSData *)aData error:(NSError **)error {
     return [self parseTlvs:aData numberOfTags:100 error:error];
+}
+
+- (BerTlvs *)parseTlvs:(NSData *)aData numberOfTags:(NSUInteger)numberOfTags __deprecated {
+    return [self parseTlvs:aData numberOfTags:numberOfTags error:nil];
 }
 
 - (BerTlvs *)parseTlvs:(NSData *)aData numberOfTags:(NSUInteger) numberOfTags error:(NSError **)error {

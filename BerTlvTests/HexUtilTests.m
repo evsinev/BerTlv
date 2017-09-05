@@ -43,7 +43,7 @@
 }
 
 - (void)expected:(NSString *)aHex {
-    NSData *data = [HexUtil parse:aHex];
+    NSData *data = [HexUtil parse:aHex error:nil];
     NSString *was = [HexUtil format:data];
     // NSLog(@"%@ -> %@", aHex, was);
 
@@ -51,7 +51,7 @@
 }
 
 - (void)expected:(NSString *)aExpected hex:(NSString *)aHex {
-    NSData *data = [HexUtil parse:aHex];
+    NSData *data = [HexUtil parse:aHex error:nil];
     NSString *actual = [HexUtil format:data];
     // NSLog(@"%@ -> %@", aHex, actual);
 
@@ -59,7 +59,7 @@
 }
 
 - (void)prettyExpected:(NSString *)aExpected hex:(NSString *)aHex {
-    NSData *data = [HexUtil parse:aHex];
+    NSData *data = [HexUtil parse:aHex error:nil];
     NSString *actual = [HexUtil prettyFormat:data];
 
     XCTAssertTrue([aExpected isEqualToString:actual], @"Expected %@ but actual %@", aExpected, actual);
