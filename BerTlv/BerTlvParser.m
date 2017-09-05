@@ -62,6 +62,10 @@ static int IS_DEBUG_ENABLED = 0; // note, running the testFuzzer with this enabl
     return [[BerTlvs alloc] init:list];
 }
 
+- (BerTlv *)parseWithResult:(uint*)aOutResult data:(NSData *)aBuf offset:(uint)aOffset len:(uint)aLen level:(uint)aLevel __deprecated {
+    return [self parseWithResult:aOutResult data:aBuf offset:aOffset len:aLen level:aLevel error:nil];
+}
+
 - (BerTlv *)parseWithResult:(uint*)aOutResult
                        data:(NSData *)aBuf
                      offset:(uint)aOffset
