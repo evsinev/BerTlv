@@ -11,7 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSString *) format:(NSData *)aData;
 + (NSString *) prettyFormat:(NSData *)aData;
 
-+ (NSData * _Nullable) parse:(NSString *)aHex __deprecated;
++ (NSData * _Nullable) parse:(NSString *)aHex __deprecated NS_SWIFT_UNAVAILABLE("");
 + (NSData *) parse:(NSString *)aHex error:(NSError **)error;
 
 + (NSString *)format:(NSData *)data offset:(uint)offset len:(NSUInteger)len;
