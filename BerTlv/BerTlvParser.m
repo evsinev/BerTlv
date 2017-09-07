@@ -135,7 +135,7 @@ static int IS_DEBUG_ENABLED = 0; // note, running the testFuzzer with this enabl
 }
 
 - (uint)calcTagBytesCount:(NSData *)aBuf offset:(uint)aOffset {
-    if (aOffset > aBuf.length) {
+    if (!aBuf || aOffset > aBuf.length) {
         return 1;
     }
     
@@ -171,7 +171,7 @@ static int IS_DEBUG_ENABLED = 0; // note, running the testFuzzer with this enabl
 }
 
 - (uint) calcLengthBytesCount:(NSData *)aBuf offset:(uint)aOffset {
-    if (aOffset > aBuf.length) {
+    if (!aBuf || aOffset > aBuf.length) {
         return 1;
     }
     
@@ -185,7 +185,7 @@ static int IS_DEBUG_ENABLED = 0; // note, running the testFuzzer with this enabl
 }
 
 -(uint) calcDataLength:(NSData *)aBuf offset:(uint) aOffset error:(NSError **)error {
-    if (aOffset > aBuf.length) {
+    if (!aBuf || aOffset > aBuf.length) {
         return 1;
     }
     
@@ -223,7 +223,7 @@ static int IS_DEBUG_ENABLED = 0; // note, running the testFuzzer with this enabl
     uint startPosition = aOffset + aTagBytesCount + aDataBytesCount;
     uint len = aValueLength;
 
-    if (startPosition + len > aBuf.length) {
+    if (!aBuf || startPosition + len > aBuf.length) {
         if (error) {
             *error = [BerTlvErrors outOfRangeAtOffset:aOffset length:aValueLength bufferLength:aBuf.length level:aLevel];
         }
