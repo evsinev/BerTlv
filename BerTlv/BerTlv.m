@@ -73,7 +73,7 @@
         }
     }
 
-    return array;
+    return [array copy];
 }
 
 - (NSString *)hexValue {

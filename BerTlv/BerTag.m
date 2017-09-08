@@ -99,7 +99,7 @@
         [description appendFormat:@"- "];
     }
     [description appendFormat:@"%@", [HexUtil format:data]];
-    return description;
+    return [description copy];
 }
 
 + (BerTag *)parse:(NSString *)aHexString {

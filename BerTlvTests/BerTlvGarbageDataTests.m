@@ -63,7 +63,7 @@
     BerTlvParser *parser = [[BerTlvParser alloc] init];
 
     NSInteger maxSize = 2048;
-    NSInteger count = 10000; // increase this number to run the fuzzer longer.
+    NSInteger count = 1000; // increase this number to run the fuzzer longer.
     NSInteger failCount = 0;
 
     for (NSInteger i = 0; i < count; i++) {

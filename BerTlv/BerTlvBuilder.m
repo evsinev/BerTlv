@@ -65,7 +65,7 @@
     for(int i=0; hex.length < aLength*2 && i<100; i++) {
         [hex insertString:@"0" atIndex:0];
     }
-    return [self addHex:hex tag:aTag];
+    return [self addHex:[hex copy] tag:aTag];
 }
 
 - (BOOL)addAmount:(NSDecimalNumber *)aAmount tag:(BerTag *)aTag {
@@ -150,7 +150,7 @@
     // VALUE
     [ret appendData:data];
 
-    return ret;
+    return [ret copy];
 }
 
 - (NSData *)createLengthData:(NSUInteger)aLength error:(NSError **)error {

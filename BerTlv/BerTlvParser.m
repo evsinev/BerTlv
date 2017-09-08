@@ -11,7 +11,7 @@
 #import "BerTlvErrors.h"
 
 
-static int IS_DEBUG_ENABLED = 0; // note, running the testFuzzer with this enabled will take a long time.
+static int IS_DEBUG_ENABLED = 0; // note, running the testFuzzer unit test with this enabled may take a long time.
 
 @implementation BerTlvParser
 
@@ -115,7 +115,7 @@ static int IS_DEBUG_ENABLED = 0; // note, running the testFuzzer with this enabl
             NSLog(@"%@Returning constructed offset = %d", levelPadding, resultOffset );
         }
         *aOutResult = resultOffset;
-        return [[BerTlv alloc] init:tag array:array];
+        return [[BerTlv alloc] init:tag array:[array copy]];
     } else {
         NSRange range = {aOffset+tagBytesCount+lengthBytesCount, valueLength};
         uint resultOffset = aOffset + tagBytesCount + lengthBytesCount + valueLength;
@@ -167,7 +167,7 @@ static int IS_DEBUG_ENABLED = 0; // note, running the testFuzzer with this enabl
     for(int i=0; i<aLevel*4; i++) {
         [sb appendString:@" "];
     }
-    return sb;
+    return [sb copy];
 }
 
 - (uint) calcLengthBytesCount:(NSData *)aBuf offset:(uint)aOffset {
