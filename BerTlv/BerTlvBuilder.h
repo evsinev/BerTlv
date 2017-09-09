@@ -20,9 +20,14 @@ NS_ASSUME_NONNULL_BEGIN
 - (id)initWithTemplate :(BerTag  * ) aTag  ;
 
 // build
-- (NSData  * _Nullable) buildDataWithError:(NSError **)error  ;
-- (BerTlvs * _Nullable) buildTlvsWithError:(NSError **)error  ;
-- (BerTlv  * _Nullable) buildTlvWithError:(NSError **)error   ;
+- (NSData  *) buildData __deprecated NS_SWIFT_UNAVAILABLE("");
+- (NSData  * _Nullable) buildDataWithError:(NSError **)error;
+
+- (BerTlvs *) buildTlvs __deprecated NS_SWIFT_UNAVAILABLE("");
+- (BerTlvs * _Nullable) buildTlvsWithError:(NSError **)error;
+
+- (BerTlv  *) buildTlv  __deprecated NS_SWIFT_UNAVAILABLE("");
+- (BerTlv  * _Nullable) buildTlvWithError:(NSError **)error;
 
 // add values
 // return BOOL indicates success

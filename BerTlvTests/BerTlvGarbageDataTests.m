@@ -28,13 +28,13 @@
 }
 
 - (void)testNSDataParseStringMiscountReturnsNil {
-    NSData *data = [HexUtil parse:@"fff"];
+    NSData *data = [HexUtil parse:@"fff" error:nil];
     XCTAssertNil(data);
 }
 
 - (void)testCalcDataBadLength {
     BerTlvParser *parser = [[BerTlvParser alloc] init];
-    NSData *testData = [HexUtil parse:@"ff20ffff0000"];
+    NSData *testData = [HexUtil parse:@"ff20ffff0000" error:nil];
     NSError *error;
     [parser parseTlvs:testData error:&error];
     XCTAssertNotNil(error);
@@ -43,14 +43,14 @@
 
 - (void)testOutOfRange {
     BerTlvParser *parser = [[BerTlvParser alloc] init];
-    NSData *testData = [HexUtil parse:@"3f9f5745 c37ede54"];
+    NSData *testData = [HexUtil parse:@"3f9f5745 c37ede54" error:nil];
     NSError *error;
     [parser parseTlvs:testData error:&error];
     XCTAssertNotNil(error);
 }
 
 - (void)testParseTlvsFromGarbageData {
-    NSArray *garbageDatas = @[[HexUtil parse:@"1c1308fd 11212a28"], [HexUtil parse:@"c8036f54"], [HexUtil parse:@"1f84f9fe"]];
+    NSArray *garbageDatas = @[[HexUtil parse:@"1c1308fd 11212a28" error:nil], [HexUtil parse:@"c8036f54" error:nil], [HexUtil parse:@"1f84f9fe" error:nil]];
     
     for (NSData *testData in garbageDatas) {
         BerTlvParser *parser = [[BerTlvParser alloc] init];
@@ -63,7 +63,7 @@
     BerTlvParser *parser = [[BerTlvParser alloc] init];
 
     NSInteger maxSize = 2048;
-    NSInteger count = 10000; // increase this number to run the fuzzer longer.
+    NSInteger count = 1000; // increase this number to run the fuzzer longer.
     NSInteger failCount = 0;
 
     for (NSInteger i = 0; i < count; i++) {

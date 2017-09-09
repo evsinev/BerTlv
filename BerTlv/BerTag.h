@@ -10,7 +10,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic, copy) NSData *data;;
 
-- (id _Nullable) init:(NSData *)aData
+- (id __nullable) init:(NSData *)aData
      offset:(uint)aOffset
      length:(uint)aLength;
 
@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (BOOL)isConstructed;
 
-- (BOOL)isEqual:(id)other;
+- (BOOL)isEqual:(id __nullable)object;
 - (BOOL)isEqualToTag:(BerTag *)tag;
 - (NSUInteger)hash;
 - (NSString *)description;

@@ -37,7 +37,7 @@
     for (BerTlv *tlv in list) {
         [ret addObjectsFromArray:[tlv findAll:aTag]];
     }
-    return ret;
+    return [ret copy];
 }
 
 - (NSString *) dump:(NSString *)aPadding {
@@ -46,7 +46,7 @@
         [sb appendString:[tlv dump:aPadding]];
     }
 
-    return sb;
+    return [sb copy];
 }
 
 @end

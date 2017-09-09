@@ -14,8 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface BerTlv : NSObject
 
 @property(copy, nonatomic, readonly) BerTag  *  tag         ;
-@property(copy, nonatomic, readonly) NSData  *  value       ;
-@property(copy, nonatomic, readonly) NSArray *  list        ;
+@property(copy, nonatomic, readonly, nullable) NSData  *  value       ;
+@property(copy, nonatomic, readonly, nullable) NSArray *  list        ;
 @property(nonatomic, readonly)       BOOL       primitive   ;
 @property(nonatomic, readonly)       BOOL       constructed ;
 

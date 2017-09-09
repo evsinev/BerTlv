@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (id)init:(NSArray *)aList;
 
-- (BerTlv * _Nullable)  find   :(BerTag *)aTag;
+- (BerTlv * _Nullable) find:(BerTag *)aTag;
 - (NSArray *) findAll:(BerTag *)aTag;
 
 - (NSString *) dump:(NSString *)aPadding;

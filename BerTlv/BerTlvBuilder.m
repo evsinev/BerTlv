@@ -65,7 +65,7 @@
     for(int i=0; hex.length < aLength*2 && i<100; i++) {
         [hex insertString:@"0" atIndex:0];
     }
-    return [self addHex:hex tag:aTag];
+    return [self addHex:[hex copy] tag:aTag];
 }
 
 - (BOOL)addAmount:(NSDecimalNumber *)aAmount tag:(BerTag *)aTag {
@@ -110,8 +110,12 @@
 }
 
 - (BOOL)addHex:(NSString *)aHex tag:(BerTag *)aTag {
-    NSData *buf = [HexUtil parse:aHex];
+    NSData *buf = [HexUtil parse:aHex error:nil];
     return [self addBytes:buf tag:aTag];
+}
+
+- (NSData  *) buildData __deprecated {
+    return [self buildDataWithError: nil];
 }
 
 - (NSData *)buildDataWithError:(NSError **)error {
@@ -146,7 +150,7 @@
     // VALUE
     [ret appendData:data];
 
-    return ret;
+    return [ret copy];
 }
 
 - (NSData *)createLengthData:(NSUInteger)aLength error:(NSError **)error {
@@ -182,10 +186,18 @@
     }
 }
 
+- (BerTlv *) buildTlv __deprecated {
+    return [self buildTlvWithError:nil];
+}
+
 - (BerTlv *)buildTlvWithError:(NSError **)error {
     BerTlvParser * parser = [[BerTlvParser alloc] init];
     NSData *builtData = [self buildDataWithError:error];
     return builtData ? [parser parseConstructed:builtData error:error] : nil;
+}
+
+- (BerTlvs *) buildTlvs __deprecated {
+    return [self buildTlvsWithError:nil];
 }
 
 - (BerTlvs *)buildTlvsWithError:(NSError **)error {

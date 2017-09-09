@@ -91,7 +91,7 @@ NSString *hexPrimitive =
 
 - (void)testParse {
 
-    NSData *data = [HexUtil parse:hex];
+    NSData *data = [HexUtil parse:hex error:nil];
     BerTlvParser *parser = [[BerTlvParser alloc] init];
     BerTlv *tlv = [parser parseConstructed:data error:nil];
     [self assertTag:[BerTag parse:@"e1"] actual:tlv.tag];
@@ -107,7 +107,7 @@ NSString *hexPrimitive =
 }
 
 - (void)assertHex:(NSString *)aExpected actual:(NSString *)aHex {
-    NSData *data = [HexUtil parse:aHex];
+    NSData *data = [HexUtil parse:aHex error:nil];
     NSString *actual = [HexUtil format:data];
     // NSLog(@"%@ -> %@", aHex, actual);
 
@@ -115,7 +115,7 @@ NSString *hexPrimitive =
 }
 
 - (void) testParseTlvs {
-    NSData *data = [HexUtil parse:hexPrimitive];
+    NSData *data = [HexUtil parse:hexPrimitive error:nil];
     BerTlvParser *parser = [[BerTlvParser alloc] init];
     BerTlvs *tlvs = [parser parseTlvs:data error:nil];
 
@@ -125,7 +125,7 @@ NSString *hexPrimitive =
 }
 
 - (void)testParsePartial{
-    NSData *data = [HexUtil parse:hexPrimitive];
+    NSData *data = [HexUtil parse:hexPrimitive error:nil];
     BerTlvParser *parser = [[BerTlvParser alloc] init];
 
     BerTlvs *tlvs = [parser parseTlvs:data numberOfTags: 2 error:nil];

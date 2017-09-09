@@ -39,7 +39,7 @@ static uint8_t HEX_BYTE_SKIP = 99;
     return [HexUtil format:aData offset:0 len:aData.length];
 }
 
-+ (NSData *)parse:(NSString *)aHex {
++ (NSData * _Nullable) parse:(NSString *)aHex __deprecated {
     return [self parse:aHex error:nil];
 }
 

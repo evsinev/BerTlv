@@ -11,9 +11,13 @@
 #import "BerTlvErrors.h"
 
 
-static int IS_DEBUG_ENABLED = 0; // note, running the testFuzzer with this enabled will take a long time.
+static int IS_DEBUG_ENABLED = 0; // note, running the testFuzzer unit test with this enabled may take a long time.
 
 @implementation BerTlvParser
+
+- (BerTlv *)parseConstructed:(NSData *)aData __deprecated {
+    return [self parseConstructed:aData error:nil];
+}
 
 - (BerTlv *)parseConstructed:(NSData *)aData error:(NSError **)error {
     uint result=0;
@@ -21,8 +25,16 @@ static int IS_DEBUG_ENABLED = 0; // note, running the testFuzzer with this enabl
     return ret;
 }
 
+- (BerTlvs *)parseTlvs:(NSData *)aData __deprecated {
+    return [self parseTlvs:aData error:nil];
+}
+
 - (BerTlvs *)parseTlvs:(NSData *)aData error:(NSError **)error {
     return [self parseTlvs:aData numberOfTags:100 error:error];
+}
+
+- (BerTlvs *)parseTlvs:(NSData *)aData numberOfTags:(NSUInteger)numberOfTags __deprecated {
+    return [self parseTlvs:aData numberOfTags:numberOfTags error:nil];
 }
 
 - (BerTlvs *)parseTlvs:(NSData *)aData numberOfTags:(NSUInteger) numberOfTags error:(NSError **)error {
@@ -48,6 +60,10 @@ static int IS_DEBUG_ENABLED = 0; // note, running the testFuzzer with this enabl
     }
 
     return [[BerTlvs alloc] init:list];
+}
+
+- (BerTlv *)parseWithResult:(uint*)aOutResult data:(NSData *)aBuf offset:(uint)aOffset len:(uint)aLen level:(uint)aLevel __deprecated {
+    return [self parseWithResult:aOutResult data:aBuf offset:aOffset len:aLen level:aLevel error:nil];
 }
 
 - (BerTlv *)parseWithResult:(uint*)aOutResult
@@ -99,7 +115,7 @@ static int IS_DEBUG_ENABLED = 0; // note, running the testFuzzer with this enabl
             NSLog(@"%@Returning constructed offset = %d", levelPadding, resultOffset );
         }
         *aOutResult = resultOffset;
-        return [[BerTlv alloc] init:tag array:array];
+        return [[BerTlv alloc] init:tag array:[array copy]];
     } else {
         NSRange range = {aOffset+tagBytesCount+lengthBytesCount, valueLength};
         uint resultOffset = aOffset + tagBytesCount + lengthBytesCount + valueLength;
@@ -119,7 +135,7 @@ static int IS_DEBUG_ENABLED = 0; // note, running the testFuzzer with this enabl
 }
 
 - (uint)calcTagBytesCount:(NSData *)aBuf offset:(uint)aOffset {
-    if (aOffset > aBuf.length) {
+    if (!aBuf || aOffset > aBuf.length) {
         return 1;
     }
     
@@ -151,11 +167,11 @@ static int IS_DEBUG_ENABLED = 0; // note, running the testFuzzer with this enabl
     for(int i=0; i<aLevel*4; i++) {
         [sb appendString:@" "];
     }
-    return sb;
+    return [sb copy];
 }
 
 - (uint) calcLengthBytesCount:(NSData *)aBuf offset:(uint)aOffset {
-    if (aOffset > aBuf.length) {
+    if (!aBuf || aOffset > aBuf.length) {
         return 1;
     }
     
@@ -169,7 +185,7 @@ static int IS_DEBUG_ENABLED = 0; // note, running the testFuzzer with this enabl
 }
 
 -(uint) calcDataLength:(NSData *)aBuf offset:(uint) aOffset error:(NSError **)error {
-    if (aOffset > aBuf.length) {
+    if (!aBuf || aOffset > aBuf.length) {
         return 1;
     }
     
@@ -207,7 +223,7 @@ static int IS_DEBUG_ENABLED = 0; // note, running the testFuzzer with this enabl
     uint startPosition = aOffset + aTagBytesCount + aDataBytesCount;
     uint len = aValueLength;
 
-    if (startPosition + len > aBuf.length) {
+    if (!aBuf || startPosition + len > aBuf.length) {
         if (error) {
             *error = [BerTlvErrors outOfRangeAtOffset:aOffset length:aValueLength bufferLength:aBuf.length level:aLevel];
         }
