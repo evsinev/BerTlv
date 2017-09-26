@@ -147,5 +147,15 @@ NSString * badLengthData = @"DF 01 06 AA BB CC DD EE"; // Truncated data, length
     XCTAssertNotNil(parseError);
 }
 
+- (void)testBadLengthTlvWithoutErrorParam{
+    NSData *data = [HexUtil parse:badLengthData error:nil];
+    
+    BerTlvParser *parser = [[BerTlvParser alloc] init];
+    BerTlvs *tlvs = [parser parseTlvs:data error:nil];
+    
+    XCTAssertNil(tlvs);
+
+}
+
 @end
 

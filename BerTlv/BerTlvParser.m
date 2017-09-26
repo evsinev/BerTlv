@@ -44,9 +44,10 @@ static int IS_DEBUG_ENABLED = 0; // note, running the testFuzzer unit test with 
     
     NSMutableArray *list = [[NSMutableArray alloc] init];
     uint offset = 0;
+    NSError * parseError = nil;
     for(uint i=0; i<numberOfTags; i++) {
         uint result=0;
-        BerTlv * ret = [self parseWithResult:&result data:aData offset:offset len:(uint)aData.length-offset level:0 error:error];
+        BerTlv * ret = [self parseWithResult:&result data:aData offset:offset len:(uint)aData.length-offset level:0 error:&parseError];
         
         if (ret != nil) {
             [list addObject:ret];
@@ -61,7 +62,10 @@ static int IS_DEBUG_ENABLED = 0; // note, running the testFuzzer unit test with 
 
         offset = result;
     }
-    if(*error){
+    if(parseError){
+        if(error){
+            *error=parseError;
+        }
         return nil;
     }
     return [[BerTlvs alloc] init:list];
