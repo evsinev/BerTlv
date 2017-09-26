@@ -50,6 +50,9 @@ static int IS_DEBUG_ENABLED = 0; // note, running the testFuzzer unit test with 
         
         if (ret != nil) {
             [list addObject:ret];
+        } else
+        {
+            break;
         }
 
         if (result >= aData.length) {
@@ -58,7 +61,9 @@ static int IS_DEBUG_ENABLED = 0; // note, running the testFuzzer unit test with 
 
         offset = result;
     }
-
+    if(*error){
+        return nil;
+    }
     return [[BerTlvs alloc] init:list];
 }
 
