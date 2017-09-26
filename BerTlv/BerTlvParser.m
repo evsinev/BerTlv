@@ -122,6 +122,9 @@ static int IS_DEBUG_ENABLED = 0; // note, running the testFuzzer unit test with 
         *aOutResult = resultOffset;
         
         if (range.location + range.length > aBuf.length) {
+            if(error){
+                *error=[BerTlvErrors badLengthAtOffset:(uint)range.location numberOfBytes:range.length];
+            }
             return nil;
         }
         NSData *value = [aBuf subdataWithRange:range];;
