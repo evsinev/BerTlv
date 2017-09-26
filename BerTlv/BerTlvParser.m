@@ -44,12 +44,16 @@ static int IS_DEBUG_ENABLED = 0; // note, running the testFuzzer unit test with 
     
     NSMutableArray *list = [[NSMutableArray alloc] init];
     uint offset = 0;
+    NSError * parseError = nil;
     for(uint i=0; i<numberOfTags; i++) {
         uint result=0;
-        BerTlv * ret = [self parseWithResult:&result data:aData offset:offset len:(uint)aData.length-offset level:0 error:error];
+        BerTlv * ret = [self parseWithResult:&result data:aData offset:offset len:(uint)aData.length-offset level:0 error:&parseError];
         
         if (ret != nil) {
             [list addObject:ret];
+        } else
+        {
+            break;
         }
 
         if (result >= aData.length) {
@@ -58,7 +62,12 @@ static int IS_DEBUG_ENABLED = 0; // note, running the testFuzzer unit test with 
 
         offset = result;
     }
-
+    if(parseError){
+        if(error){
+            *error=parseError;
+        }
+        return nil;
+    }
     return [[BerTlvs alloc] init:list];
 }
 
@@ -90,6 +99,7 @@ static int IS_DEBUG_ENABLED = 0; // note, running the testFuzzer unit test with 
     uint valueLength = [self calcDataLength:aBuf offset:aOffset + tagBytesCount error:&lengthErr];
     if (lengthErr && error) {
         *error = lengthErr;
+        return nil;
     }
 
     if(IS_DEBUG_ENABLED) {
@@ -98,6 +108,7 @@ static int IS_DEBUG_ENABLED = 0; // note, running the testFuzzer unit test with 
     }
 
     // VALUE
+    NSError * childError =nil;
     if(tag.isConstructed) {
         NSMutableArray *array = [[NSMutableArray alloc] init];
         [self addChildren:aBuf
@@ -108,8 +119,12 @@ static int IS_DEBUG_ENABLED = 0; // note, running the testFuzzer unit test with 
            dataBytesCount:lengthBytesCount
               valueLength:valueLength
                     array:array
-                    error:error
+                    error:&childError
         ];
+        if (childError && error) {
+            *error = childError;
+            return nil;
+        }
         uint resultOffset = aOffset + tagBytesCount + lengthBytesCount + valueLength;
         if(IS_DEBUG_ENABLED) {
             NSLog(@"%@Returning constructed offset = %d", levelPadding, resultOffset );
@@ -122,6 +137,9 @@ static int IS_DEBUG_ENABLED = 0; // note, running the testFuzzer unit test with 
         *aOutResult = resultOffset;
         
         if (range.location + range.length > aBuf.length) {
+            if(error){
+                *error=[BerTlvErrors badLengthAtOffset:(uint)range.location numberOfBytes:range.length];
+            }
             return nil;
         }
         NSData *value = [aBuf subdataWithRange:range];;
@@ -233,6 +251,9 @@ static int IS_DEBUG_ENABLED = 0; // note, running the testFuzzer unit test with 
     while (startPosition < aOffset + aValueLength) {
         uint result = 0;
         BerTlv *tlv = [self parseWithResult:&result data:aBuf offset:startPosition len:len level:aLevel+1 error:error];
+        if(*error){
+            break;
+        }
         if (tlv != nil) {
             [aList addObject:tlv];
         }

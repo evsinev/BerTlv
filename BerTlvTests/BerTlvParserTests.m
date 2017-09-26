@@ -89,6 +89,8 @@ NSString *hexPrimitive =
 /*   f0 */ @"00 00 63                                            " // ..c
 ;
 
+NSString * badLengthData = @"DF 01 06 AA BB CC DD EE"; // Truncated data, length 06 but only 5 bytes value
+
 - (void)testParse {
 
     NSData *data = [HexUtil parse:hex error:nil];
@@ -132,6 +134,27 @@ NSString *hexPrimitive =
 
     XCTAssertEqual(2, tlvs.list.count, @"Count must be 2");
     NSLog(@"tlvs = \n%@", [tlvs dump:@"  "]);
+}
+
+- (void)testBadLengthTlv{
+    NSData *data = [HexUtil parse:badLengthData error:nil];
+
+    NSError * parseError =nil;
+    BerTlvParser *parser = [[BerTlvParser alloc] init];
+    BerTlvs *tlvs = [parser parseTlvs:data error:&parseError];
+
+    XCTAssertNil(tlvs);
+    XCTAssertNotNil(parseError);
+}
+
+- (void)testBadLengthTlvWithoutErrorParam{
+    NSData *data = [HexUtil parse:badLengthData error:nil];
+    
+    BerTlvParser *parser = [[BerTlvParser alloc] init];
+    BerTlvs *tlvs = [parser parseTlvs:data error:nil];
+    
+    XCTAssertNil(tlvs);
+
 }
 
 @end
