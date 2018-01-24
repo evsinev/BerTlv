@@ -248,7 +248,7 @@ static int IS_DEBUG_ENABLED = 0; // note, running the testFuzzer unit test with 
         return;
     }
     
-    while (startPosition < aOffset + aValueLength) {
+    while (startPosition < aOffset + aValueLength + aTagBytesCount + aDataBytesCount) {
         uint result = 0;
         BerTlv *tlv = [self parseWithResult:&result data:aBuf offset:startPosition len:len level:aLevel+1 error:error];
         if(*error){

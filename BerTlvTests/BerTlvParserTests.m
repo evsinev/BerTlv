@@ -136,6 +136,19 @@ NSString * badLengthData = @"DF 01 06 AA BB CC DD EE"; // Truncated data, length
     NSLog(@"tlvs = \n%@", [tlvs dump:@"  "]);
 }
 
+- (void)testParseWholeConstructed {
+    // + [3F00]
+    //   - [01] 01
+    //   - [02] 0202
+    NSString *hex = @"3f00 8107 0101 0102 0202 02";
+    NSData *data = [HexUtil parse:hex error:nil];
+    BerTlvParser *parser = [[BerTlvParser alloc] init];
+    BerTlvs *tlvs = [parser parseTlvs:data error:nil];
+    BerTlv *tlv = [tlvs.list objectAtIndex:0];
+    XCTAssertEqual(2, tlv.list.count, @"Count must be 2");
+    NSLog(@"tlv = \n%@", [tlvs dump:@"  "]);
+}
+
 - (void)testBadLengthTlv{
     NSData *data = [HexUtil parse:badLengthData error:nil];
 
