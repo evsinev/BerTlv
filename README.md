@@ -1,5 +1,6 @@
 # BER-TLV parser and builder
 
+[![CircleCI](https://circleci.com/gh/evsinev/BerTlv.svg?style=svg)](https://circleci.com/gh/evsinev/BerTlv)
 [![Build Status](https://travis-ci.org/evsinev/BerTlv.svg?branch=master)](https://travis-ci.org/evsinev/BerTlv)
 
 BerTlv is an Objective-C framework for parsing and building BER TLV encoded data.
