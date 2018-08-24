@@ -16,15 +16,15 @@ BerTlv is an Objective-C framework for parsing and building BER TLV encoded data
 
 ### Cocoapods
 
-    pod 'BerTlv', '0.1.0'
+    pod 'BerTlv', '0.2.3'
 
 or
 
-    pod "BerTlv", :git => 'git@github.com:evsinev/BerTlv.git', :tag => '0.1.3'
+    pod "BerTlv", :git => 'git@github.com:evsinev/BerTlv.git', :tag => '0.2.3'
 
 ### Carthage
 
-    github "evsinev/BerTlv"  "0.1.3"
+    github "evsinev/BerTlv"  "0.2.3"
 
 ## Examples
 
