@@ -13,7 +13,9 @@ Pod::Spec.new do |s|
   s.author           = { "Evgeniy Sinev" => "es@payneteasy.com" }
   s.source           = { :git => "https://github.com/evsinev/BerTlv.git", :tag => s.version.to_s }
 
-  s.platform     = :ios, '8.0'
+  s.ios.deployment_target = '8.0'
+  s.watchos.deployment_target = '2.0'
+
   s.requires_arc = true
 
   s.source_files = 'BerTlv'
