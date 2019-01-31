@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "016C356C21FF4FEE003D5899"
-               BuildableName = "BerTlv-macOS.framework"
+               BuildableName = "BerTlv.framework"
                BlueprintName = "BerTlv-macOS"
                ReferencedContainer = "container:BerTlv.xcodeproj">
             </BuildableReference>
@@ -46,7 +46,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "016C356C21FF4FEE003D5899"
-            BuildableName = "BerTlv-macOS.framework"
+            BuildableName = "BerTlv.framework"
             BlueprintName = "BerTlv-macOS"
             ReferencedContainer = "container:BerTlv.xcodeproj">
          </BuildableReference>
@@ -64,7 +64,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "016C356C21FF4FEE003D5899"
-            BuildableName = "BerTlv-macOS.framework"
+            BuildableName = "BerTlv.framework"
             BlueprintName = "BerTlv-macOS"
             ReferencedContainer = "container:BerTlv.xcodeproj">
          </BuildableReference>

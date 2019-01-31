@@ -187,7 +187,6 @@
 				8A858F461CE6154600A3779C /* BerTlvFrameworkTests */,
 				8A4BEB4D198ED6C500707046 /* Frameworks */,
 				8A4BEB4C198ED6C500707046 /* Products */,
-				016C358421FF4FEE003D5899 /* BerTlv-macOS-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -264,6 +263,7 @@
 			isa = PBXGroup;
 			children = (
 				8A4BEB66198ED6C500707046 /* BerTlvTests-Info.plist */,
+				016C358421FF4FEE003D5899 /* BerTlv-macOS-Info.plist */,
 				8A4BEB67198ED6C500707046 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
