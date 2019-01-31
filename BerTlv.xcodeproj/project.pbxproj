@@ -7,6 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		016C356E21FF4FEE003D5899 /* BerTlv.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A4BEB55198ED6C500707046 /* BerTlv.m */; };
+		016C356F21FF4FEE003D5899 /* BerTag.m in Sources */ = {isa = PBXBuildFile; fileRef = B2DF6369EFD6776A1A19AFF0 /* BerTag.m */; };
+		016C357021FF4FEE003D5899 /* HexUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = B2DF61934AA6EBE642C057E7 /* HexUtil.m */; };
+		016C357121FF4FEE003D5899 /* BerTlvParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B2DF6A9F83C1B8506761EA08 /* BerTlvParser.m */; };
+		016C357221FF4FEE003D5899 /* BerTlvs.m in Sources */ = {isa = PBXBuildFile; fileRef = B2DF68E68CD9D09E69ED85E8 /* BerTlvs.m */; };
+		016C357321FF4FEE003D5899 /* BerTlvBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = B2DF6CCDBA6480154AAA66AF /* BerTlvBuilder.m */; };
+		016C357421FF4FEE003D5899 /* BerTlvErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE6176D1F56BE9700F9CBD4 /* BerTlvErrors.m */; };
+		016C357721FF4FEE003D5899 /* BerTlvErrors.h in Headers */ = {isa = PBXBuildFile; fileRef = 4BE6176C1F56BE9700F9CBD4 /* BerTlvErrors.h */; };
+		016C357821FF4FEE003D5899 /* BerTag.h in Headers */ = {isa = PBXBuildFile; fileRef = B2DF654B440CC8DF0090421E /* BerTag.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		016C357921FF4FEE003D5899 /* BerTlvParser.h in Headers */ = {isa = PBXBuildFile; fileRef = B2DF6712285D06D8BEFA7599 /* BerTlvParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		016C357A21FF4FEE003D5899 /* BerTlvs.h in Headers */ = {isa = PBXBuildFile; fileRef = B2DF63B1FB5A3356C6A8BC63 /* BerTlvs.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		016C357B21FF4FEE003D5899 /* BerTlv.h in Headers */ = {isa = PBXBuildFile; fileRef = 8A4BEB53198ED6C500707046 /* BerTlv.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		016C357C21FF4FEE003D5899 /* BerTlvUmbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8ADE44A71CE9F322006BEC34 /* BerTlvUmbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		016C357D21FF4FEE003D5899 /* HexUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = B2DF64825EB0782AD3F2A243 /* HexUtil.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		016C357E21FF4FEE003D5899 /* BerTlvBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = B2DF630FA0DFAAEE5267F33E /* BerTlvBuilder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4BE6176E1F56BE9700F9CBD4 /* BerTlvErrors.h in Headers */ = {isa = PBXBuildFile; fileRef = 4BE6176C1F56BE9700F9CBD4 /* BerTlvErrors.h */; };
 		4BE6176F1F56BE9700F9CBD4 /* BerTlvErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE6176D1F56BE9700F9CBD4 /* BerTlvErrors.m */; };
 		4BE617701F56BF1D00F9CBD4 /* BerTlvErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE6176D1F56BE9700F9CBD4 /* BerTlvErrors.m */; };
@@ -78,6 +93,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		016C358321FF4FEE003D5899 /* BerTlv.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BerTlv.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		016C358421FF4FEE003D5899 /* BerTlv-macOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "BerTlv-macOS-Info.plist"; path = "/Users/armansharvel/Developer/Frameworks/BerTlv/BerTlv-macOS-Info.plist"; sourceTree = "<absolute>"; };
 		4B9E63381E82B31E0051EA01 /* BerTlv.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = BerTlv.modulemap; sourceTree = "<group>"; };
 		4BE6176C1F56BE9700F9CBD4 /* BerTlvErrors.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BerTlvErrors.h; sourceTree = "<group>"; };
 		4BE6176D1F56BE9700F9CBD4 /* BerTlvErrors.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BerTlvErrors.m; sourceTree = "<group>"; };
@@ -117,6 +134,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		016C357521FF4FEE003D5899 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8A4BEB48198ED6C500707046 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -173,6 +197,7 @@
 				8A4BEB5B198ED6C500707046 /* BerTlvTests.xctest */,
 				8A858F391CE6154600A3779C /* BerTlv.framework */,
 				8A858F421CE6154600A3779C /* BerTlvFrameworkTests.xctest */,
+				016C358321FF4FEE003D5899 /* BerTlv.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -238,6 +263,7 @@
 			isa = PBXGroup;
 			children = (
 				8A4BEB66198ED6C500707046 /* BerTlvTests-Info.plist */,
+				016C358421FF4FEE003D5899 /* BerTlv-macOS-Info.plist */,
 				8A4BEB67198ED6C500707046 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
@@ -263,6 +289,21 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		016C357621FF4FEE003D5899 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				016C357721FF4FEE003D5899 /* BerTlvErrors.h in Headers */,
+				016C357821FF4FEE003D5899 /* BerTag.h in Headers */,
+				016C357921FF4FEE003D5899 /* BerTlvParser.h in Headers */,
+				016C357A21FF4FEE003D5899 /* BerTlvs.h in Headers */,
+				016C357B21FF4FEE003D5899 /* BerTlv.h in Headers */,
+				016C357C21FF4FEE003D5899 /* BerTlvUmbrella.h in Headers */,
+				016C357D21FF4FEE003D5899 /* HexUtil.h in Headers */,
+				016C357E21FF4FEE003D5899 /* BerTlvBuilder.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8A858F361CE6154600A3779C /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -281,6 +322,24 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		016C356C21FF4FEE003D5899 /* BerTlv-macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 016C358021FF4FEE003D5899 /* Build configuration list for PBXNativeTarget "BerTlv-macOS" */;
+			buildPhases = (
+				016C356D21FF4FEE003D5899 /* Sources */,
+				016C357521FF4FEE003D5899 /* Frameworks */,
+				016C357621FF4FEE003D5899 /* Headers */,
+				016C357F21FF4FEE003D5899 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "BerTlv-macOS";
+			productName = BerTlvFramework;
+			productReference = 016C358321FF4FEE003D5899 /* BerTlv.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		8A4BEB4A198ED6C500707046 /* BerTlvStatic */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8A4BEB6E198ED6C500707046 /* Build configuration list for PBXNativeTarget "BerTlvStatic" */;
@@ -384,6 +443,7 @@
 			projectRoot = "";
 			targets = (
 				8A858F381CE6154600A3779C /* BerTlv */,
+				016C356C21FF4FEE003D5899 /* BerTlv-macOS */,
 				8A4BEB4A198ED6C500707046 /* BerTlvStatic */,
 				8A4BEB5A198ED6C500707046 /* BerTlvTests */,
 				8A858F411CE6154600A3779C /* BerTlvFrameworkTests */,
@@ -392,6 +452,13 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		016C357F21FF4FEE003D5899 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8A4BEB59198ED6C500707046 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -417,6 +484,20 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		016C356D21FF4FEE003D5899 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				016C356E21FF4FEE003D5899 /* BerTlv.m in Sources */,
+				016C356F21FF4FEE003D5899 /* BerTag.m in Sources */,
+				016C357021FF4FEE003D5899 /* HexUtil.m in Sources */,
+				016C357121FF4FEE003D5899 /* BerTlvParser.m in Sources */,
+				016C357221FF4FEE003D5899 /* BerTlvs.m in Sources */,
+				016C357321FF4FEE003D5899 /* BerTlvBuilder.m in Sources */,
+				016C357421FF4FEE003D5899 /* BerTlvErrors.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8A4BEB47198ED6C500707046 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -494,6 +575,78 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		016C358121FF4FEE003D5899 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+					"$(inherited)",
+				);
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "BerTlv-macOS-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = BerTlv/BerTlv.modulemap;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.payneteasy.BerTlvFramework;
+				PRODUCT_NAME = BerTlv;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		016C358221FF4FEE003D5899 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+					"$(inherited)",
+				);
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "BerTlv-macOS-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = BerTlv/BerTlv.modulemap;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.payneteasy.BerTlvFramework;
+				PRODUCT_NAME = BerTlv;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		8A4BEB6C198ED6C500707046 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -748,6 +901,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		016C358021FF4FEE003D5899 /* Build configuration list for PBXNativeTarget "BerTlv-macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				016C358121FF4FEE003D5899 /* Debug */,
+				016C358221FF4FEE003D5899 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		8A4BEB46198ED6C500707046 /* Build configuration list for PBXProject "BerTlv" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
