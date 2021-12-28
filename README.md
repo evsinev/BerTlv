@@ -26,6 +26,12 @@ or
 
     github "evsinev/BerTlv"  "0.2.3"
 
+### Swift Package Manage
+
+```
+github "evsinev/BerTlv"
+```
+
 ## Examples
 
 ### Parsing
