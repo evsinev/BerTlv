@@ -6,7 +6,8 @@ import PackageDescription
 let package = Package(
     name: "BerTlv",
     products: [
-        .library(name: "BerTlv", type: .dynamic, targets: ["BerTlv"])
+        .library(name: "BerTlv", targets: ["BerTlv"]),
+        .library(name: "BerTlvDynamic", type: .dynamic, targets: ["BerTlv"])
     ],
     targets: [
         .target(name: "BerTlv", path: "BerTlv", exclude: ["BerTlv-Prefix.pch"])
